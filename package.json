@@ -8,7 +8,7 @@
     "email": "hakatasiloving@gmail.com",
     "url": "http://hakatashi.com/"
   },
-  "repository": "hakatashi/japanese",
+  "repository": "hakatashi/japanese.js",
   "license": "MIT",
   "files": [
     "index.js",
