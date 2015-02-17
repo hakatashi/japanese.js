@@ -67,7 +67,7 @@ describe('japanese.katakanize()', function () {
 
     it('must perfectly convert hiragana-mixed string into katakana', function () {
         japanese.katakanize('ふぇれろ・ろしぇ').should.be.exactly('フェレロ・ロシェ');
-        japanese.katakanize('あんどーなつ').should.be.exactly('あんドーナツ');
+        japanese.katakanize('あんドーナツ').should.be.exactly('アンドーナツ');
         japanese.katakanize('抹茶あいす').should.be.exactly('抹茶アイス');
         japanese.katakanize('牛乳ぷりん').should.be.exactly('牛乳プリン');
         japanese.katakanize('りこりす菓子').should.be.exactly('リコリス菓子');
