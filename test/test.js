@@ -42,6 +42,11 @@ describe('japanese.hiraganize()', function () {
         japanese.hiraganize('食エ𪜈゙食エ𪜈゙オ菓子ノ山').should.be.exactly('食えども食えどもお菓子の山');
     });
 
+    it('must keep small-ka and small-ke untouched', function () {
+        japanese.hiraganize('どら焼 3ヶ入').should.be.exactly('どら焼 3ヶ入');
+        japanese.hiraganize('一ヵ月のダイエット').should.be.exactly('一ヵ月のだいえっと');
+    });
+
     it('must keep non-japanese strings untouched', function () {
         japanese.hiraganize('Chocolate').should.be.exactly('Chocolate');
         japanese.hiraganize('Tiramisù').should.be.exactly('Tiramisù');
