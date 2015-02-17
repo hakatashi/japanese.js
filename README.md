@@ -1,4 +1,4 @@
-#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image]
+#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][gemnasium-url]][gemnasium-image]
 
 > Util collection for Japanese text processing.
 
@@ -15,7 +15,7 @@ $ npm install --save japanese
 ```js
 var japanese = require('japanese');
 
-japanese('Rainbow');
+japanese.hiraganize('ヱヴァンゲリヲン');
 ```
 
 ```sh
@@ -38,5 +38,5 @@ MIT © [hakatashi](http://hakatashi.com/)
 [npm-image]: https://badge.fury.io/js/japanese.svg
 [travis-url]: https://travis-ci.org/hakatashi/japanese
 [travis-image]: https://travis-ci.org/hakatashi/japanese.svg?branch=master
-[daviddm-url]: https://david-dm.org/hakatashi/japanese.svg?theme=shields.io
-[daviddm-image]: https://david-dm.org/hakatashi/japanese
+[gemnasium-url]: https://gemnasium.com/hakatashi/japanese.js
+[gemnasium-image]: https://gemnasium.com/hakatashi/japanese.js.svg
