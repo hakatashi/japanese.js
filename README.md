@@ -36,7 +36,7 @@ MIT © [hakatashi](http://hakatashi.com/)
 
 [npm-url]: https://npmjs.org/package/japanese
 [npm-image]: https://badge.fury.io/js/japanese.svg
-[travis-url]: https://travis-ci.org/hakatashi/japanese
-[travis-image]: https://travis-ci.org/hakatashi/japanese.svg?branch=master
+[travis-url]: https://travis-ci.org/hakatashi/japanese.js
+[travis-image]: https://travis-ci.org/hakatashi/japanese.js.svg?branch=master
 [gemnasium-url]: https://gemnasium.com/hakatashi/japanese.js
 [gemnasium-image]: https://gemnasium.com/hakatashi/japanese.js.svg
