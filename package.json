@@ -1,6 +1,6 @@
 {
   "name": "japanese",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Util collection for Japanese text processing.",
   "homepage": "https://github.com/hakatashi/japanese.js",
   "author": {
@@ -43,7 +43,7 @@
   },
   "scripts": {
     "test": "grunt",
-    "browser": "browserify index.js > browser.js"
+    "browser": "browserify index.js > dist/japanese.js"
   },
   "bin": {
     "japanese": "cli.js"
