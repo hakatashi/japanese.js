@@ -1,4 +1,4 @@
-#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][gemnasium-url]][gemnasium-image]
+#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][gemnasium-image]][gemnasium-url]
 
 > Util collection for Japanese text processing.
 
