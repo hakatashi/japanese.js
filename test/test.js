@@ -101,3 +101,13 @@ describe('japanese.katakanize()', function () {
         japanese.katakanize('龜苓膏').should.be.exactly('龜苓膏');
     });
 });
+
+describe('japanese.romanize()', function () {
+    it('must perfectly convert given hiragana into romaji', function () {
+        japanese.romanize('まんじゅう').should.be.exactly('manjuu');
+        japanese.romanize('くりきんとん').should.be.exactly('kurikinton');
+        japanese.romanize('ぬれせんべい').should.be.exactly('nuresenbei');
+        japanese.romanize('あんみつ').should.be.exactly('anmitsu');
+        japanese.romanize('なまやつはし').should.be.exactly('namayatsuhashi');
+    });
+});
