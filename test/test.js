@@ -41,4 +41,12 @@ describe('japanese.hiraganize()', function () {
         japanese.hiraganize('板垣死ス𪜈オ菓子ハ死セズ').should.be.exactly('板垣死すともお菓子は死せず');
         japanese.hiraganize('食エ𪜈゙食エ𪜈゙オ菓子ノ山').should.be.exactly('食えども食えどもお菓子の山');
     });
+
+    it('must keep non-japanese strings untouched', function () {
+        japanese.hiraganize('Chocolate').should.be.exactly('Chocolate');
+        japanese.hiraganize('Tiramisù').should.be.exactly('Tiramisù');
+        japanese.hiraganize('пряник').should.be.exactly('пряник');
+        japanese.hiraganize('ฝอยทอง').should.be.exactly('ฝอยทอง');
+        japanese.hiraganize('龜苓膏').should.be.exactly('龜苓膏');
+    });
 });
