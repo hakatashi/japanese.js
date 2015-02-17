@@ -27,7 +27,7 @@
     "CJK"
   ],
   "dependencies": {
-    "meow": "^2.0.0"
+    "meow": "~3.0.0"
   },
   "devDependencies": {
     "browserify": "^7.0.0",
