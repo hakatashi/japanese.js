@@ -13,7 +13,7 @@ describe('japanese.hiraganize()', function () {
     });
 
     it('must perfectly convert katakana-mixed string into hiragana', function () {
-        japanese.hiraganize('フェレロ・ロシェ').should.be.exactly('ふぃれろ・ろしぇ');
+        japanese.hiraganize('フェレロ・ロシェ').should.be.exactly('ふぇれろ・ろしぇ');
         japanese.hiraganize('あんドーナツ').should.be.exactly('あんどーなつ');
         japanese.hiraganize('抹茶アイス').should.be.exactly('抹茶あいす');
         japanese.hiraganize('牛乳プリン').should.be.exactly('牛乳ぷりん');
