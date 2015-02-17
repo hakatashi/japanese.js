@@ -21,15 +21,24 @@ describe('japanese.hiraganize()', function () {
     });
 
     it('must perfectly convert strange katakana string into hiragana', function () {
-        japanese.hiraganize('ビスコッティ・サヴォイアルディ').should.be.exactly('びすこってぃ・さゔぉいあるでぃ');
+        japanese.hiraganize('バクラヴァ').should.be.exactly('ばくらゔぁ');
         japanese.hiraganize('ヴァレニエ').should.be.exactly('ゔぁれにえ');
         japanese.hiraganize('ヱヴァンゲリヲン').should.be.exactly('ゑゔぁんげりをん');
         japanese.hiraganize('チヨコバナヽ').should.be.exactly('ちよこばなゝ');
         japanese.hiraganize('バヾヘラアイス').should.be.exactly('ばゞへらあいす');
     });
 
-    it('must convert unconvertable katakanaes using combining characters', function () {
+    it('must convert unconvertable voiced katakanaes using combining characters', function () {
         japanese.hiraganize('ヸヨロン').should.be.exactly('ゐ゙よろん');
         japanese.hiraganize('ヹルタースオリジナル').should.be.exactly('ゑ゙るたーすおりじなる');
+        japanese.hiraganize('シユヷルツヹルダーキルシユトルテ').should.be.exactly('しゆわ゙るつゑ゙るだーきるしゆとるて');
+        japanese.hiraganize('ビスコツテイサヺイアルデイ').should.be.exactly('びすこつていさを゙いあるでい');
+        japanese.hiraganize('ルートヸヒシユトルヹルク').should.be.exactly('るーとゐ゙ひしゆとるゑ゙るく');
+    });
+
+    it('must convert katakana digraphs into separated hiraganaes', function () {
+        japanese.hiraganize('オ菓子ヲ食スヿコレ快ナリ').should.be.exactly('お菓子を食すことこれ快なり');
+        japanese.hiraganize('板垣死ス𪜈オ菓子ハ死セズ').should.be.exactly('板垣死すともお菓子は死せず');
+        japanese.hiraganize('食エ𪜈゙食エ𪜈゙オ菓子ノ山').should.be.exactly('食えども食えどもお菓子の山');
     });
 });
