@@ -55,3 +55,49 @@ describe('japanese.hiraganize()', function () {
         japanese.hiraganize('龜苓膏').should.be.exactly('龜苓膏');
     });
 });
+
+describe('japanese.katakanize()', function () {
+    it('must perfectly convert given hiragana into katakana', function () {
+        japanese.katakanize('もんぶらん').should.be.exactly('モンブラン');
+        japanese.katakanize('てぃらみす').should.be.exactly('ティラミス');
+        japanese.katakanize('じぇらーと').should.be.exactly('ジェラート');
+        japanese.katakanize('せみふれっど').should.be.exactly('セミフレッド');
+        japanese.katakanize('ぱんなこった').should.be.exactly('パンナコッタ');
+    });
+
+    it('must perfectly convert hiragana-mixed string into katakana', function () {
+        japanese.katakanize('ふぇれろ・ろしぇ').should.be.exactly('フェレロ・ロシェ');
+        japanese.katakanize('あんどーなつ').should.be.exactly('あんドーナツ');
+        japanese.katakanize('抹茶あいす').should.be.exactly('抹茶アイス');
+        japanese.katakanize('牛乳ぷりん').should.be.exactly('牛乳プリン');
+        japanese.katakanize('りこりす菓子').should.be.exactly('リコリス菓子');
+    });
+
+    it('must perfectly convert strange hiragana string into katakana', function () {
+        japanese.katakanize('ばくらゔぁ').should.be.exactly('バクラヴァ');
+        japanese.katakanize('ゔぁれにえ').should.be.exactly('ヴァレニエ');
+        japanese.katakanize('ゑゔぁんげりをん').should.be.exactly('ヱヴァンゲリヲン');
+        japanese.katakanize('ちよこばなゝ').should.be.exactly('チヨコバナヽ');
+        japanese.katakanize('ばゞへらあいす').should.be.exactly('バヾヘラアイス');
+    });
+
+    it('must convert hiragana with combining characters just like normal characters', function () {
+        japanese.katakanize('ゐ゙よろん').should.be.exactly('ヸヨロン');
+        japanese.katakanize('ゑ゙るたーすおりじなる').should.be.exactly('ヹルタースオリジナル');
+        japanese.katakanize('しゆわ゙るつゑ゙るだーきるしゆとるて').should.be.exactly('シユヷルツヹルダーキルシユトルテ');
+        japanese.katakanize('びすこつていさを゙いあるでい').should.be.exactly('ビスコツテイサヺイアルデイ');
+        japanese.katakanize('るーとゐ゙ひしゆとるゑ゙るく').should.be.exactly('ルートヸヒシユトルヹルク');
+    });
+
+    it('must convert katakana digraphs into separated hiraganaes', function () {
+        japanese.katakanize('本日ゟかき氷解禁').should.be.exactly('本日ヨリカキ氷解禁');
+    });
+
+    it('must keep non-japanese strings untouched', function () {
+        japanese.katakanize('Chocolate').should.be.exactly('Chocolate');
+        japanese.katakanize('Tiramisù').should.be.exactly('Tiramisù');
+        japanese.katakanize('пряник').should.be.exactly('пряник');
+        japanese.katakanize('ฝอยทอง').should.be.exactly('ฝอยทอง');
+        japanese.katakanize('龜苓膏').should.be.exactly('龜苓膏');
+    });
+});
