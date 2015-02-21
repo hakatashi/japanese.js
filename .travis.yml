@@ -5,4 +5,4 @@ node_js:
   - 'iojs'
 install: npm install
 script: npm test
-after_success: istanbul cover .\node_modules\mocha\bin\_mocha && cat .\coverage\lcov.info | coveralls
+after_success: istanbul cover ./node_modules/mocha/bin/_mocha && cat ./coverage/lcov.info | coveralls
