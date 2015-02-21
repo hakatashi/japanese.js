@@ -1,4 +1,4 @@
-# japanese.js [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][gemnasium-image]][gemnasium-url]
+# japanese.js [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency Status][gemnasium-image]][gemnasium-url]
 
 > Util collection for Japanese text processing.
 
@@ -38,5 +38,7 @@ MIT © [hakatashi](http://hakatashi.com/)
 [npm-image]: https://badge.fury.io/js/japanese.svg
 [travis-url]: https://travis-ci.org/hakatashi/japanese.js
 [travis-image]: https://travis-ci.org/hakatashi/japanese.js.svg?branch=master
+[coveralls-url]: https://coveralls.io/r/hakatashi/japanese.js
+[coveralls-image]: https://coveralls.io/repos/hakatashi/japanese.js/badge.svg
 [gemnasium-url]: https://gemnasium.com/hakatashi/japanese.js
 [gemnasium-image]: https://gemnasium.com/hakatashi/japanese.js.svg
