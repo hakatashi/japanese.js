@@ -48,8 +48,6 @@ japanese.hiraganize = function (string) {
 			return chr(ord(katakana) - ord('ァ') + ord('ぁ'));
 		} else if (japanese.specialHiraganizationTable[katakana]) {
 			return japanese.specialHiraganizationTable[katakana];
-		} else {
-			return katakana;
 		}
 	});
 };
@@ -60,8 +58,6 @@ japanese.katakanize = function (string) {
 			return chr(ord(hiragana) - ord('ぁ') + ord('ァ'));
 		} else if (japanese.specialKatakanizationTable[hiragana]) {
 			return japanese.specialKatakanizationTable[hiragana];
-		} else {
-			return hiragana;
 		}
 	});
 };
