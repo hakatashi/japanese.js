@@ -50,5 +50,14 @@
   },
   "bin": {
     "japanese": "cli.js"
+  },
+  "testling": {
+    "harness": "mocha-bdd",
+    "files": "test/*.js",
+    "browsers": [
+      "ie/6..latest",
+      "chrome/latest",
+      "firefox/latest"
+    ]
   }
 }
