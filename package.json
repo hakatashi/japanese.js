@@ -31,13 +31,16 @@
   },
   "devDependencies": {
     "browserify": "^7.0.0",
+    "coveralls": "^2.11.2",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-nodeunit": "^0.4.1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-mocha-cli": "^1.11.0",
+    "istanbul": "^0.3.6",
     "jshint-stylish": "^1.0.0",
     "load-grunt-tasks": "^1.0.0",
+    "mocha": "^2.1.0",
     "should": "^5.0.0",
     "time-grunt": "^1.0.0"
   },
