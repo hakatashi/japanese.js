@@ -9,7 +9,6 @@
 $ npm install --save japanese
 ```
 
-
 ## Usage
 
 ```js
@@ -18,16 +17,41 @@ var japanese = require('japanese');
 japanese.hiraganize('ヱヴァンゲリヲン');
 ```
 
-```sh
-$ npm install --global japanese
-$ japanese --help
+## API
+
+### japanesee.hiraganize(text)
+
+Covert input katakana into hiragara.
+
+#### Arguments
+
+* `text` The text to hiraganize
+
+#### Example
+
+```js
+japanese.hiraganize('ヱヴァンゲリヲン');     // ゑゔぁんげりをん
+japanese.hiraganize('チヨコバナヽ');         // ちよこばなゝ
+japanese.hiraganize('ヹルタースオリジナル'); // ゑ゙るたーすおりじなる
+japanese.hiraganize('板垣死ス𪜈');           // 板垣死すとも
 ```
 
-```sh
-# creates a browser.js
-$ npm run browser
-```
+### japanesee.katakanize(text)
 
+Covert input hiragana into katakana.
+
+#### Arguments
+
+* `text` The text to katakanize
+
+#### Example
+
+```js
+japanese.katakanize('抹茶あいす');       // 抹茶アイス
+japanese.katakanize('ばゞへらあいす');   // バヾヘラアイス
+japanese.katakanize('ゐ゙よろん');         // ヸヨロン
+japanese.katakanize('本日ゟかき氷解禁'); // 本日ヨリカキ氷解禁
+```
 
 ## License
 
