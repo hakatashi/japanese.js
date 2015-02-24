@@ -1,6 +1,6 @@
 {
   "name": "japanese",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Util collection for Japanese text processing.",
   "homepage": "https://github.com/hakatashi/japanese.js",
   "author": {
