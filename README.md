@@ -53,6 +53,23 @@ japanese.katakanize('ゐ゙よろん');         // ヸヨロン
 japanese.katakanize('本日ゟかき氷解禁'); // 本日ヨリカキ氷解禁
 ```
 
+## Roadmap
+
+* japanese.romanize()
+* japanese.deromanize()
+* japanese.cyrillize()
+* japanese.decyrillize()
+* japanese.hangulize()
+* japanese.dehangulize()
+* japanese.gyarumojize()
+* japanese.isKatakana()
+* japanese.isHiragana()
+* japanese.isKanji()
+* japanese.isJoyoKanji()
+* japanese.isKinsoku() (JIS X 4051 compatibility is welcomed)
+
+...and any proposal or idea for enhancing japanese.js is welcomed! [Tell me](https://github.com/hakatashi/japanese.js/issues), [tell me](https://twitter.com/intent/tweet?text=I+have+a+great+idea+for+enhancing+your+japanese.js.+That+is...), [tell me](mailto:hakatasiloving@gmail.com)!
+
 ## License
 
 MIT © [hakatashi](http://hakatashi.com/)
