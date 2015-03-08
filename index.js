@@ -209,6 +209,8 @@ japanese.romanizePuncutuationTable = {
 	'」': '”',
 	'（': '(',
 	'）': ')',
+	'　': ' ',
+	' ': ' ',
 };
 
 japanese.defaultRomanizationConfig = {
@@ -224,6 +226,7 @@ japanese.defaultRomanizationConfig = {
 	'うう': 'ū',
 	'ええ': 'ee',
 	'おお': 'ō',
+	'あー': 'ā',
 	'えい': 'ei',
 	'おう': 'ō',
 	'んあ': 'n\'a',
@@ -248,6 +251,7 @@ japanese.romanizationConfigs = {
 		'うう': 'û',
 		'ええ': 'ê',
 		'おお': 'ô',
+		'あー': 'â',
 		'おう': 'ô',
 		'っち': 'tti',
 	},
@@ -263,6 +267,7 @@ japanese.romanizationConfigs = {
 		'うう': 'ū',
 		'ええ': 'ē',
 		'おお': 'ō',
+		'あー': 'ā',
 		'おう': 'ō',
 		'っち': 'tti',
 		'ゐ': 'wi',
@@ -454,11 +459,36 @@ japanese.romanize = function (string, config) {
 		}
 
 		// long vowel
-		var isLongVowel = false;
 		if (token === 'ー') {
-			isLongVowel = true;
-			tokenDest = '';
-		} else if (dest.slice(-1) === 'e' && tokenDest[0] === 'i') {
+			if (dest.match(/[aiueo]$/)) {
+				if (config['あー'] === 'ah') {
+					dest += 'h';
+				} else if (config['あー'] === 'â') {
+					dest = dest.slice(0, -1) + {
+						'a': 'â',
+						'i': 'î',
+						'u': 'û',
+						'e': 'ê',
+						'o': 'ô',
+					}[dest.slice(-1)];
+				} else if (config['あー'] === 'ā') {
+					dest = dest.slice(0, -1) + {
+						'a': 'ā',
+						'i': 'ī',
+						'u': 'ū',
+						'e': 'ē',
+						'o': 'ō',
+					}[dest.slice(-1)];
+				}
+
+				tokenDest = '';
+			} else {
+				tokenDest = '-';
+			}
+		}
+
+		var isLongVowel = false;
+		if (dest.slice(-1) === 'e' && tokenDest[0] === 'i') {
 			if (config['えい'] === 'ei') {
 				// nope
 			} else {

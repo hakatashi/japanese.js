@@ -103,6 +103,82 @@ describe('japanese.katakanize()', function () {
 });
 
 describe('japanese.romanize()', function () {
+	describe('Wikipedia-style mode', function () {
+		it('must perfectly convert existing Wikipedia articles', function () {
+			japanese.romanize('れんあい').should.be.exactly('ren\'ai');
+
+			japanese.romanize('ほっかいどう').should.be.exactly('hokkaidō');
+			japanese.romanize('あおもり').should.be.exactly('aomori');
+			japanese.romanize('いわて').should.be.exactly('iwate');
+			japanese.romanize('あきた').should.be.exactly('akita');
+			japanese.romanize('やまがた').should.be.exactly('yamagata');
+			japanese.romanize('ふくしま').should.be.exactly('fukushima');
+			japanese.romanize('いばらき').should.be.exactly('ibaraki');
+			japanese.romanize('とちぎ').should.be.exactly('tochigi');
+			japanese.romanize('ぐんま').should.be.exactly('gunma');
+			japanese.romanize('さいたま').should.be.exactly('saitama');
+			japanese.romanize('ちば').should.be.exactly('chiba');
+			japanese.romanize('とうきょう').should.be.exactly('tōkyō');
+			japanese.romanize('かながわ').should.be.exactly('kanagawa');
+			japanese.romanize('にいがた').should.be.exactly('niigata');
+			japanese.romanize('とやま').should.be.exactly('toyama');
+			japanese.romanize('いしかわ').should.be.exactly('ishikawa');
+			japanese.romanize('ふくい').should.be.exactly('fukui');
+			japanese.romanize('やまなし').should.be.exactly('yamanashi');
+			japanese.romanize('ながの').should.be.exactly('nagano');
+			japanese.romanize('ぎふ').should.be.exactly('gifu');
+			japanese.romanize('しずおか').should.be.exactly('shizuoka');
+			japanese.romanize('あいち').should.be.exactly('aichi');
+			japanese.romanize('みえ').should.be.exactly('mie');
+			japanese.romanize('しが').should.be.exactly('shiga');
+			japanese.romanize('きょうと').should.be.exactly('kyōto');
+			japanese.romanize('おおさか').should.be.exactly('ōsaka');
+			japanese.romanize('ひょうご').should.be.exactly('hyōgo');
+			japanese.romanize('なら').should.be.exactly('nara');
+			japanese.romanize('わかやま').should.be.exactly('wakayama');
+			japanese.romanize('とっとり').should.be.exactly('tottori');
+			japanese.romanize('しまね').should.be.exactly('shimane');
+			japanese.romanize('おかやま').should.be.exactly('okayama');
+			japanese.romanize('ひろしま').should.be.exactly('hiroshima');
+			japanese.romanize('やまぐち').should.be.exactly('yamaguchi');
+			japanese.romanize('とくしま').should.be.exactly('tokushima');
+			japanese.romanize('かがわ').should.be.exactly('kagawa');
+			japanese.romanize('えひめ').should.be.exactly('ehime');
+			japanese.romanize('こうち').should.be.exactly('kōchi');
+			japanese.romanize('ふくおか').should.be.exactly('fukuoka');
+			japanese.romanize('さが').should.be.exactly('saga');
+			japanese.romanize('ながさき').should.be.exactly('nagasaki');
+			japanese.romanize('くまもと').should.be.exactly('kumamoto');
+			japanese.romanize('おおいた').should.be.exactly('ōita');
+			japanese.romanize('みやざき').should.be.exactly('miyazaki');
+			japanese.romanize('かごしま').should.be.exactly('kagoshima');
+			japanese.romanize('おきなわ').should.be.exactly('okinawa');
+		});
+
+		// http://en.wikipedia.org/wiki/List_of_Strawberry_Panic!_characters
+		it('must kind-hearted for fans of Strawberry Panic!', function () {
+			japanese.romanize('あおい なぎさ').should.be.exactly('aoi nagisa');
+			japanese.romanize('はなぞの しずま').should.be.exactly('hanazono shizuma');
+			japanese.romanize('すずみ たまお').should.be.exactly('suzumi tamao');
+			japanese.romanize('ろくじょう みゆき').should.be.exactly('rokujō miyuki');
+			japanese.romanize('つきだて ちよ').should.be.exactly('tsukidate chiyo');
+			japanese.romanize('さくらぎ かおり').should.be.exactly('sakuragi kaori');
+			// Original: Sisutā Hamasaka Mizue ...which maybe typo
+			japanese.romanize('しすたー はまさか みずえ').should.be.exactly('shisutā hamasaka mizue');
+			japanese.romanize('このはな ひかり').should.be.exactly('konohana hikari');
+			japanese.romanize('なんと やや').should.be.exactly('nanto yaya');
+			japanese.romanize('おおとり あまね').should.be.exactly('ōtori amane');
+			japanese.romanize('おくわか つぼみ').should.be.exactly('okuwaka tsubomi');
+			japanese.romanize('とうもり しおん').should.be.exactly('tōmori shion');
+			japanese.romanize('けんじょう かなめ').should.be.exactly('kenjō kaname');
+			japanese.romanize('きやしき ももみ').should.be.exactly('kiyashiki momomi');
+			japanese.romanize('みなもと ちかる').should.be.exactly('minamoto chikaru');
+			japanese.romanize('ひゅうが きずな').should.be.exactly('hyūga kizuna');
+			japanese.romanize('なつめ れもん').should.be.exactly('natsume remon');
+			japanese.romanize('びゃくだん かごめ').should.be.exactly('byakudan kagome');
+		});
+	});
+
 	describe('Kunrei-shiki mode', function () {
 		it('must perfectly convert ISO 3602 provided examples', function () {
 			japanese.romanize('かのう', 'kunrei').should.be.exactly('kanô');
