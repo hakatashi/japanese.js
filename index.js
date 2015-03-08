@@ -200,6 +200,17 @@ japanese.romanizationTable = {
 	'ヶ': 'ke',
 };
 
+japanese.romanizePuncutuationTable = {
+	'。': '.',
+	'、': ',',
+	'・': '-',
+	'－': '-',
+	'「': '“',
+	'」': '”',
+	'（': '(',
+	'）': ')',
+};
+
 japanese.defaultRomanizationConfig = {
 	'し': 'shi',
 	'ち': 'chi',
@@ -220,11 +231,11 @@ japanese.defaultRomanizationConfig = {
 	'っち': 'tchi',
 	'ゐ': 'i',
 	'を': 'o',
-	diacritical: true,
 	punctuation: true,
 };
 
 japanese.romanizationConfigs = {
+	wikipedia: {},
 	kunrei: {
 		'し': 'si',
 		'ち': 'ti',
@@ -286,7 +297,7 @@ japanese.katakanize = function (string) {
 
 japanese.romanize = function (string, config) {
 	if (typeof config === 'undefined') {
-		config = 'hepburn';
+		config = 'wikipedia';
 	}
 
 	if (typeof config === 'string') {
@@ -500,6 +511,10 @@ japanese.romanize = function (string, config) {
 			} else if (config['んあ'] === 'n-a') {
 				tokenDest = '-' + tokenDest;
 			}
+		}
+
+		if (config.punctuation && japanese.romanizePuncutuationTable[token]) {
+			tokenDest = japanese.romanizePuncutuationTable[token];
 		}
 
 		dest += tokenDest;
