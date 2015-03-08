@@ -186,7 +186,6 @@ japanese.romanizationTable = {
 	'いぇ': 'ye',
 	'くゎ': 'kwa',
 	'ぐゎ': 'gwa',
-	'ー': '-',
 	'ぁ': 'a',
 	'ぃ': 'i',
 	'ぅ': 'u',
@@ -209,6 +208,12 @@ japanese.defaultRomanizationConfig = {
 	'じ': 'ji',
 	'ぢ': 'ji',
 	'づ': 'zu',
+	'ああ': 'aa',
+	'いい': 'ii',
+	'うう': 'ū',
+	'ええ': 'ee',
+	'おお': 'ō',
+	'えい': 'ei',
 	'おう': 'ō',
 	'んあ': 'n\'a',
 	'んば': 'nba',
@@ -227,6 +232,11 @@ japanese.romanizationConfigs = {
 		'ふ': 'hu',
 		'じ': 'zi',
 		'ぢ': 'zi',
+		'ああ': 'â',
+		'いい': 'î',
+		'うう': 'û',
+		'ええ': 'ê',
+		'おお': 'ô',
 		'おう': 'ô',
 		'っち': 'tti',
 	},
@@ -237,7 +247,12 @@ japanese.romanizationConfigs = {
 		'ふ': 'hu',
 		'じ': 'di',
 		'ぢ': 'di',
-		'おう': 'ô',
+		'ああ': 'ā',
+		'いい': 'ī',
+		'うう': 'ū',
+		'ええ': 'ē',
+		'おお': 'ō',
+		'おう': 'ō',
 		'っち': 'tti',
 		'ゐ': 'wi',
 		'を': 'wo',
@@ -353,10 +368,10 @@ japanese.romanize = function (string, config) {
 	if (config['ぢ'] === 'zi') {
 		extend(table, {
 			'ぢ': 'zi',
-			'ぢゃ': 'zia',
-			'ぢゅ': 'ziu',
-			'ぢぇ': 'zie',
-			'ぢょ': 'zio',
+			'ぢゃ': 'zya',
+			'ぢゅ': 'zyu',
+			'ぢぇ': 'zye',
+			'ぢょ': 'zyo',
 		});
 	}
 
@@ -383,7 +398,116 @@ japanese.romanize = function (string, config) {
 		});
 	}
 
-	return config;
+	string = japanese.hiraganize(string);
+
+	var dest = '';
+	var previousToken = '';
+
+	while (string.length > 0) {
+		var token = '';
+
+		// assuming we have only one or two letter token in table
+		if (table[string.slice(0, 2)]) {
+			token = string.slice(0, 2);
+			string = string.slice(2);
+		} else {
+			token = string[0];
+			string = string.slice(1);
+		}
+
+		// handle small tsu
+		if (token === 'っ') {
+			previousToken = token;
+			continue;
+		}
+
+		var tokenDest = table[token] || '';
+
+		// small tsu
+		if (previousToken === 'っ') {
+			if (tokenDest.match(/^[^aiueo]/)) {
+				if (config['っち'] === 'tchi' && token[0] === 'ち') {
+					tokenDest = {
+						'ち': 'tchi',
+						'ちゃ': 'tcha',
+						'ちゅ': 'tchu',
+						'ちぇ': 'tche',
+						'ちょ': 'tcho',
+					}[token];
+				} else {
+					tokenDest = tokenDest[0] + tokenDest;
+				}
+			} else {
+				// nope
+			}
+		}
+
+		// long vowel
+		var isLongVowel = false;
+		if (token === 'ー') {
+			isLongVowel = true;
+			tokenDest = '';
+		} else if (dest.slice(-1) === 'e' && tokenDest[0] === 'i') {
+			if (config['えい'] === 'ei') {
+				// nope
+			} else {
+				isLongVowel = true;
+				tokenDest = tokenDest.slice(1);
+			}
+		} else if (dest.slice(-1) === 'o' && tokenDest[0] === 'u') {
+			if (config['おう'] === 'ou') {
+				// nope
+			} else if (config['おう'] === 'oo') {
+				tokenDest = 'o' + tokenDest.slice(1);
+			} else {
+				isLongVowel = true;
+				tokenDest = tokenDest.slice(1);
+			}
+		} else if (dest.match(/[aiueo]$/) && dest.slice(-1) === tokenDest[0] && token !== 'を') {
+			isLongVowel = true;
+			tokenDest = tokenDest.slice(1);
+		}
+
+		if (isLongVowel) {
+			if (dest.match(/[aiueo]$/)) {
+				dest = dest.slice(0, -1) + config[{
+					'a': 'ああ',
+					'i': 'いい',
+					'u': 'うう',
+					'e': 'ええ',
+					'o': 'おお',
+				}[dest.slice(-1)]];
+			} else {
+				tokenDest = '-' + tokenDest;
+			}
+		}
+
+		// んば
+		if (tokenDest.match(/^[bpm]/) && previousToken === 'ん') {
+			if (config['んば'] === 'nba') {
+				// nope
+			} else if (config['んば'] === 'mba') {
+				dest = dest.slice(0, -1) + 'm';
+			}
+		}
+
+		// んあ
+		if (tokenDest.match(/^[aiueoy]/) && previousToken === 'ん') {
+			if (config['んあ'] === 'na') {
+				// nope
+			} else if (config['んあ'] === 'n\'a') {
+				tokenDest = '\'' + tokenDest;
+			} else if (config['んあ'] === 'n-a') {
+				tokenDest = '-' + tokenDest;
+			}
+		}
+
+		dest += tokenDest;
+
+		previousToken = token;
+	}
+
+	return dest;
 };
 
 module.exports = japanese;
