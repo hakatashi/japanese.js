@@ -101,3 +101,48 @@ describe('japanese.katakanize()', function () {
 		japanese.katakanize('龜苓膏').should.be.exactly('龜苓膏');
 	});
 });
+
+describe('japanese.romanize()', function () {
+	describe('Kunrei-shiki mode', function () {
+		it('must perfectly convert ISO 3602 provided examples', function () {
+			japanese.romanize('かのう', 'kunrei').should.be.exactly('kanô');
+			japanese.romanize('かんおう', 'kunrei').should.be.exactly('kan\'ô');
+			japanese.romanize('きにゅう', 'kunrei').should.be.exactly('kinyû');
+			japanese.romanize('きんゆう', 'kunrei').should.be.exactly('kin\'yû');
+
+			japanese.romanize('がっこう', 'kunrei').should.be.exactly('gakkô');
+
+			japanese.romanize('カー', 'kunrei').should.be.exactly('kâ');
+			japanese.romanize('ビール', 'kunrei').should.be.exactly('bîru');
+			japanese.romanize('ソース', 'kunrei').should.be.exactly('sôsu');
+
+			japanese.romanize('おかあさん', 'kunrei').should.be.exactly('okâsan');
+			japanese.romanize('おおきい', 'kunrei').should.be.exactly('ôkii');
+			japanese.romanize('くうき', 'kunrei').should.be.exactly('kûki');
+			japanese.romanize('おとうさん', 'kunrei').should.be.exactly('otôsan');
+			japanese.romanize('ねえさん', 'kunrei').should.be.exactly('nêsan');
+
+			japanese.romanize('こうぎょう', 'kunrei').should.be.exactly('kôgyô');
+			japanese.romanize('みょうじ', 'kunrei').should.be.exactly('myôzi');
+			japanese.romanize('しょうひょう', 'kunrei').should.be.exactly('syôhyô');
+			japanese.romanize('りゅうこう', 'kunrei').should.be.exactly('ryûkô');
+			japanese.romanize('ちゅうい', 'kunrei').should.be.exactly('tyûi');
+			japanese.romanize('ひょうじょう', 'kunrei').should.be.exactly('nêsan');
+			japanese.romanize('ぎゅうにゅう', 'kunrei').should.be.exactly('gyûnyû');
+			japanese.romanize('はっぴょう', 'kunrei').should.be.exactly('happyô');
+		});
+
+		it('must convert sensitive... ISO 3602 Strict related strings correctly', function () {
+			japanese.romanize('はなぢ', 'kunrei').should.be.exactly('hanazi');
+			japanese.romanize('ちぢみ', 'kunrei').should.be.exactly('tizimi');
+			japanese.romanize('あいづ', 'kunrei').should.be.exactly('aizu');
+			japanese.romanize('つづきもの', 'kunrei').should.be.exactly('tuzukimono');
+
+			japanese.romanize('でんぢゃらす', 'kunrei').should.be.exactly('denzyarasu');
+			japanese.romanize('まんぢゅう', 'kunrei').should.be.exactly('manzyû');
+			japanese.romanize('はなぢょうちん', 'kunrei').should.be.exactly('hanazyoutin');
+
+			japanese.romanize('くうぼをきゅう', 'kunrei').should.be.exactly('kuubookyû');
+		});
+	});
+});
