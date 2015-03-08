@@ -391,4 +391,62 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('くうぼをきゅう', 'nihon').should.be.exactly('kūbowokyū');
 		});
 	});
+
+	describe('Custom mode', function () {
+		it('must perfectly convert with some strange configs', function () {
+			var config = {
+				'ああ': 'ah',
+				'いい': 'ii',
+				'うう': 'u',
+				'ええ': 'eh',
+				'おお': 'oh',
+				'あー': 'ah',
+				'えい': 'ei',
+				'おう': 'ou',
+				'んあ': 'na',
+				'んば': 'mba',
+			};
+
+			japanese.romanize('ああむじょう', config).should.be.exactly('ahmujou');
+			japanese.romanize('ボードレール', config).should.be.exactly('bohdorehru');
+			japanese.romanize('なかはらちゅうや', config).should.be.exactly('nakaharachuya');
+			japanese.romanize('きちがいピエロ', config).should.be.exactly('kichigaipiero');
+			japanese.romanize('たにざきじゅんいちろう', config).should.be.exactly('tanizakijunichirou');
+			japanese.romanize('ヴィクトル ユーゴー', config).should.be.exactly('vikutoru yuhgoh');
+			japanese.romanize('うえだびん', config).should.be.exactly('uedabin');
+			japanese.romanize('たんびしゅぎ', config).should.be.exactly('tambishugi');
+			japanese.romanize('ゆめのきゅうさく', config).should.be.exactly('yumenokyusaku');
+			japanese.romanize('いしいはくてい', config).should.be.exactly('ishiihakutei');
+			japanese.romanize('モンテクリストはく', config).should.be.exactly('montekurisutohaku');
+			japanese.romanize('べにすにしす', config).should.be.exactly('benisunishisu');
+		});
+
+		it('must perfectly convert with some altered configs', function () {
+			var config = {
+				'ああ': 'aa',
+				'いい': 'ii',
+				'うう': 'uu',
+				'ええ': 'ee',
+				'おお': 'oo',
+				'あー': 'aa',
+				'えい': 'ee',
+				'おう': 'oo',
+				'んあ': 'na',
+				'んば': 'mba',
+			};
+
+			japanese.romanize('ああむじょう', config).should.be.exactly('aamujoo');
+			japanese.romanize('ボードレール', config).should.be.exactly('boodoreeru');
+			japanese.romanize('なかはらちゅうや', config).should.be.exactly('nakaharachuuya');
+			japanese.romanize('きちがいピエロ', config).should.be.exactly('kichigaipiero');
+			japanese.romanize('たにざきじゅんいちろう', config).should.be.exactly('tanizakijunichiroo');
+			japanese.romanize('ヴィクトル ユーゴー', config).should.be.exactly('vikutoru yuugoo');
+			japanese.romanize('うえだびん', config).should.be.exactly('uedabin');
+			japanese.romanize('たんびしゅぎ', config).should.be.exactly('tambishugi');
+			japanese.romanize('ゆめのきゅうさく', config).should.be.exactly('yumenokyuusaku');
+			japanese.romanize('いしいはくてい', config).should.be.exactly('ishiihakutee');
+			japanese.romanize('モンテクリストはく', config).should.be.exactly('montekurisutohaku');
+			japanese.romanize('べにすにしす', config).should.be.exactly('benisunishisu');
+		});
+	});
 });
