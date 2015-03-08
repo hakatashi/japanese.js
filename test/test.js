@@ -117,7 +117,6 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('ソース', 'kunrei').should.be.exactly('sôsu');
 
 			japanese.romanize('おかあさん', 'kunrei').should.be.exactly('okâsan');
-			// japanese.romanize('おおきい', 'kunrei').should.be.exactly('ôkii');
 			japanese.romanize('くうき', 'kunrei').should.be.exactly('kûki');
 			japanese.romanize('おとうさん', 'kunrei').should.be.exactly('otôsan');
 			japanese.romanize('ねえさん', 'kunrei').should.be.exactly('nêsan');
