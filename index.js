@@ -532,8 +532,18 @@ japanese.romanize = function (string, config) {
 		// long vowel
 		if (token === 'ー') {
 			if (dest.match(/[aiueo]$/)) {
-				if (config['あー'] === 'ah') {
+				if (config['あー'] === 'a') {
+					// nope
+				} else if (config['あー'] === 'ah') {
 					dest += 'h';
+				} else if (config['あー'] === 'aa') {
+					dest = dest.slice(0, -1) + {
+						'a': 'aa',
+						'i': 'ii',
+						'u': 'uu',
+						'e': 'ee',
+						'o': 'oo',
+					}[dest.slice(-1)];
 				} else if (config['あー'] === 'â') {
 					dest = dest.slice(0, -1) + {
 						'a': 'â',
