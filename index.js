@@ -166,26 +166,77 @@ japanese.romanizationTable = {
 	'ぴゅ': 'pyu',
 	'ぴぇ': 'pye',
 	'ぴょ': 'pyo',
+	/*
+	 * Rarely used character combinations
+	 *
+	 * These romanizations are normally not defined in most specifications and
+	 * very hard to verify therefore.
+	 * In this library, most of the codes are derived from following Wikipedia article.
+	 * http://en.wikipedia.org/wiki/Hepburn_romanization#For_extended_katakana
+	 */
+	'いぃ': 'yi',
+	'いぇ': 'ye',
+	'うぁ': 'wa',
+	'うぃ': 'wi',
+	'うぅ': 'wu',
+	'うぇ': 'we',
+	'うぉ': 'wo',
+	'うゅ': 'wyu',
+	'ゔゃ': 'vya',
+	'ゔゅ': 'vyu',
+	'ゔょ': 'vyo',
+	'くぁ': 'kwa',
+	'くぃ': 'kwi',
+	'くぅ': 'kwu',
+	'くぇ': 'kwe',
+	'くぉ': 'kwo',
+	'くゎ': 'kwa',
+	'ぐぁ': 'gwa',
+	'ぐぃ': 'gwi',
+	'ぐぅ': 'gwu',
+	'ぐぇ': 'gwe',
+	'ぐぉ': 'gwo',
+	'ぐゎ': 'gwa',
+	'すぃ': 'si',
+	'ずぃ': 'zi',
+	'つぁ': 'tua',
+	'つぃ': 'tui',
+	'つぇ': 'tue',
+	'つぉ': 'tuo',
+	'つゅ': 'tuyu',
+	'づぁ': 'dua',
+	'づぃ': 'dui',
+	'づぇ': 'due',
+	'づぉ': 'duo',
 	'てゃ': 'tea',
 	'てぃ': 'tei',
 	'てゅ': 'teu',
 	'てぇ': 'tee',
 	'てょ': 'teo',
-	'つぁ': 'tua',
-	'つぃ': 'tui',
-	'つぇ': 'tue',
-	'つぉ': 'tuo',
-	'づぁ': 'dua',
-	'づぃ': 'dui',
-	'づぇ': 'due',
-	'づぉ': 'duo',
-	'ふぁ': 'hua',
-	'ふぃ': 'hui',
-	'ふぇ': 'hue',
-	'ふぉ': 'huo',
-	'いぇ': 'ye',
-	'くゎ': 'kwa',
-	'ぐゎ': 'gwa',
+	'とぅ': 'tou',
+	'でゃ': 'dea',
+	'でぃ': 'dei',
+	'でゅ': 'deu',
+	'でぇ': 'dee',
+	'でょ': 'deo',
+	'どぅ': 'dou',
+	'ふぁ': 'fa',
+	'ふぃ': 'fi',
+	'ふぇ': 'fe',
+	'ふぉ': 'fo',
+	'ふゃ': 'fya',
+	'ふゅ': 'fyu',
+	'ふょ': 'fyo',
+	'ほぅ': 'hu',
+	'ら゚': 'la',
+	'り゚': 'li',
+	'る゚': 'lu',
+	'れ゚': 'le',
+	'ろ゚': 'lo',
+	'わ゙': 'va',
+	'ゐ゙': 'vi',
+	'ゑ゙': 've',
+	'を゙': 'vo',
 	'ぁ': 'a',
 	'ぃ': 'i',
 	'ぅ': 'u',
@@ -239,6 +290,17 @@ japanese.defaultRomanizationConfig = {
 
 japanese.romanizationConfigs = {
 	wikipedia: {},
+	'traditional hepburn': {
+		'を': 'wo',
+		'んあ': 'n-a',
+	},
+	'modified hepburn': {
+		'ああ': 'ā',
+		'いい': 'ī',
+		'うう': 'ū',
+		'ええ': 'ē',
+		'おお': 'ō',
+	},
 	kunrei: {
 		'し': 'si',
 		'ち': 'ti',
@@ -338,6 +400,8 @@ japanese.romanize = function (string, config) {
 			'ちゅ': 'chu',
 			'ちぇ': 'che',
 			'ちょ': 'cho',
+			'てぃ': 'ti',
+			'てゅ': 'tyu',
 		});
 	}
 
@@ -348,6 +412,8 @@ japanese.romanize = function (string, config) {
 			'つぃ': 'tsi',
 			'つぇ': 'tse',
 			'つぉ': 'tso',
+			'つゅ': 'tsyu',
+			'とぅ': 'tu',
 		});
 	}
 
@@ -378,6 +444,8 @@ japanese.romanize = function (string, config) {
 			'ぢゅ': 'ju',
 			'ぢぇ': 'je',
 			'ぢょ': 'jo',
+			'でぃ': 'di',
+			'でゅ': 'dyu',
 		});
 	}
 
@@ -388,6 +456,8 @@ japanese.romanize = function (string, config) {
 			'ぢゅ': 'zyu',
 			'ぢぇ': 'zye',
 			'ぢょ': 'zyo',
+			'でぃ': 'di',
+			'でゅ': 'dyu',
 		});
 	}
 
@@ -398,6 +468,7 @@ japanese.romanize = function (string, config) {
 			'づぃ': 'zui',
 			'づぇ': 'zue',
 			'づぉ': 'zuo',
+			'どぅ': 'du',
 		});
 	}
 
