@@ -103,6 +103,13 @@ describe('japanese.katakanize()', function () {
 });
 
 describe('japanese.romanize()', function () {
+	it('should throw error when suspicious config was delivered', function () {
+		japanese.romanize.bind(japanese, 'えらー', 'undefined config').should.throw(ReferenceError);
+		japanese.romanize.bind(japanese, 'えらー', false).should.throw(Error);
+		japanese.romanize.bind(japanese, 'えらー', 114514).should.throw(Error);
+		japanese.romanize.bind(japanese, 'えらー', function(){}).should.throw(Error);
+	});
+
 	describe('Wikipedia-style mode', function () {
 		it('must perfectly convert existing Wikipedia articles', function () {
 			japanese.romanize('れんあい').should.be.exactly('ren\'ai');
