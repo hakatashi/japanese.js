@@ -597,17 +597,13 @@ japanese.romanize = function (string, config) {
 		}
 
 		if (isLongVowel) {
-			if (dest.match(/[aiueo]$/)) {
-				dest = dest.slice(0, -1) + config[{
-					'a': 'ああ',
-					'i': 'いい',
-					'u': 'うう',
-					'e': 'ええ',
-					'o': 'おお',
-				}[dest.slice(-1)]];
-			} else {
-				tokenDest = '-' + tokenDest;
-			}
+			dest = dest.slice(0, -1) + config[{
+				'a': 'ああ',
+				'i': 'いい',
+				'u': 'うう',
+				'e': 'ええ',
+				'o': 'おお',
+			}[dest.slice(-1)]];
 		}
 
 		// んば
