@@ -525,7 +525,12 @@ japanese.romanize = function (string, config) {
 					tokenDest = tokenDest[0] + tokenDest;
 				}
 			} else {
-				// nope
+				/*
+				 * Some article claims that "ローマ字教育の指針(文部科学省)" defines that
+				 * strings ending with "っ" must be represented with trailing apostrophe
+				 * though I couldn't confirm.
+				 */
+				dest += '\'';
 			}
 		}
 
@@ -631,6 +636,10 @@ japanese.romanize = function (string, config) {
 		dest += tokenDest;
 
 		previousToken = token;
+	}
+
+	if (previousToken === 'っ') {
+		dest += '\'';
 	}
 
 	return dest;

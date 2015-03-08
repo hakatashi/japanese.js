@@ -177,6 +177,22 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('なつめ れもん').should.be.exactly('natsume remon');
 			japanese.romanize('びゃくだん かごめ').should.be.exactly('byakudan kagome');
 		});
+
+		it('should be able to convert some strange japanese strings neatly', function () {
+			japanese.romanize('アッーウッウッイネイネ').should.be.exactly('a\'-u\'u\'ineine');
+			japanese.romanize('ウッウッーウマウマ').should.be.exactly('u\'u\'-umauma');
+			japanese.romanize('ムッムッホァイ').should.be.exactly('mummuhhoai');
+			japanese.romanize('うっうー').should.be.exactly('u\'ū');
+			japanese.romanize('ッエーイ☆').should.be.exactly('\'ēi');
+			japanese.romanize('おっおっおっ').should.be.exactly('o\'o\'o\'');
+			japanese.romanize('はっやーい').should.be.exactly('hayyāi');
+			japanese.romanize('おっそーい').should.be.exactly('ossōi');
+			japanese.romanize('ンアッー!').should.be.exactly('n\'a\'-');
+			japanese.romanize('ダァシエリイェス').should.be.exactly('daashieriyesu');
+			japanese.romanize('ガールズパンツァー').should.be.exactly('gāruzupantsā');
+			japanese.romanize('キェェェェェェアァァァァァァシャァベッタァァァァァァァ').should.be.exactly('kyeeeeeeaaaaaaashaabettaaaaaaaa');
+			japanese.romanize('ぶっぽるぎゃるぴるぎゃっぽっぱぁーっ！').should.be.exactly('bupporugyarupirugyappoppaā\'');
+		});
 	});
 
 	describe('Kunrei-shiki mode', function () {
