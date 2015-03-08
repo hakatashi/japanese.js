@@ -293,10 +293,11 @@ japanese.romanizationConfigs = {
 	'traditional hepburn': {
 		'を': 'wo',
 		'んあ': 'n-a',
+		'んば': 'mba',
 	},
 	'modified hepburn': {
 		'ああ': 'ā',
-		'いい': 'ī',
+		'いい': 'ii',
 		'うう': 'ū',
 		'ええ': 'ē',
 		'おお': 'ō',
