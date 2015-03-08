@@ -196,6 +196,7 @@ describe('japanese.romanize()', function () {
 	});
 
 	describe('Traditional Hepburn mode', function () {
+		// http://en.wikipedia.org/wiki/Hepburn_romanization
 		it('must perfectly convert Wikipedia\'s conversion examples', function () {
 			japanese.romanize('おばあさん', 'traditional hepburn').should.be.exactly('obaasan');
 			japanese.romanize('おにいさん', 'traditional hepburn').should.be.exactly('oniisan');
@@ -248,6 +249,7 @@ describe('japanese.romanize()', function () {
 	});
 
 	describe('Modified Hepburn mode', function () {
+		// http://en.wikipedia.org/wiki/Hepburn_romanization
 		it('must perfectly convert Wikipedia\'s conversion examples', function () {
 			japanese.romanize('おばあさん', 'modified hepburn').should.be.exactly('obāsan');
 			japanese.romanize('おにいさん', 'modified hepburn').should.be.exactly('oniisan');
