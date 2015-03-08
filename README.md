@@ -1,6 +1,6 @@
 # japanese.js [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency Status][gemnasium-image]][gemnasium-url]
 
-> Util collection for Japanese text processing.
+> Util collection for Japanese text processing. Hiraganize, Katakanize, and Romanize.
 
 
 ## Install

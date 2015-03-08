@@ -1,7 +1,7 @@
 {
   "name": "japanese",
   "version": "0.2.1",
-  "description": "Util collection for Japanese text processing.",
+  "description": "Util collection for Japanese text processing. Hiraganize, Katakanize, and Romanize.",
   "homepage": "https://github.com/hakatashi/japanese.js",
   "author": {
     "name": "hakatashi",
@@ -12,7 +12,8 @@
   "license": "MIT",
   "files": [
     "index.js",
-    "cli.js"
+    "cli.js",
+    "sugar.js"
   ],
   "keywords": [
     "japanese",
