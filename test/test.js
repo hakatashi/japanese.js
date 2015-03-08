@@ -349,4 +349,46 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('くうぼをきゅう', 'kunrei').should.be.exactly('kûbookyû');
 		});
 	});
+
+	describe('Nihon-shiki mode', function () {
+		it('must perfectly convert ISO 3602 provided examples', function () {
+			japanese.romanize('かのう', 'nihon').should.be.exactly('kanō');
+			japanese.romanize('かんおう', 'nihon').should.be.exactly('kan\'ō');
+			japanese.romanize('きにゅう', 'nihon').should.be.exactly('kinyū');
+			japanese.romanize('きんゆう', 'nihon').should.be.exactly('kin\'yū');
+
+			japanese.romanize('がっこう', 'nihon').should.be.exactly('gakkō');
+
+			japanese.romanize('カー', 'nihon').should.be.exactly('kā');
+			japanese.romanize('ビール', 'nihon').should.be.exactly('bīru');
+			japanese.romanize('ソース', 'nihon').should.be.exactly('sōsu');
+
+			japanese.romanize('おかあさん', 'nihon').should.be.exactly('okāsan');
+			japanese.romanize('くうき', 'nihon').should.be.exactly('kūki');
+			japanese.romanize('おとうさん', 'nihon').should.be.exactly('otōsan');
+			japanese.romanize('ねえさん', 'nihon').should.be.exactly('nēsan');
+
+			japanese.romanize('こうぎょう', 'nihon').should.be.exactly('kōgyō');
+			japanese.romanize('みょうじ', 'nihon').should.be.exactly('myōzi');
+			japanese.romanize('しょうひょう', 'nihon').should.be.exactly('syōhyō');
+			japanese.romanize('りゅうこう', 'nihon').should.be.exactly('ryūkō');
+			japanese.romanize('ちゅうい', 'nihon').should.be.exactly('tyūi');
+			japanese.romanize('ひょうじょう', 'nihon').should.be.exactly('hyōzyō');
+			japanese.romanize('ぎゅうにゅう', 'nihon').should.be.exactly('gyūnyū');
+			japanese.romanize('はっぴょう', 'nihon').should.be.exactly('happyō');
+		});
+
+		it('must convert sensitive... ISO 3602 Strict related strings correctly', function () {
+			japanese.romanize('はなぢ', 'nihon').should.be.exactly('hanadi');
+			japanese.romanize('ちぢみ', 'nihon').should.be.exactly('tidimi');
+			japanese.romanize('あいづ', 'nihon').should.be.exactly('aidu');
+			japanese.romanize('つづきもの', 'nihon').should.be.exactly('tudukimono');
+
+			japanese.romanize('でんぢゃらす', 'nihon').should.be.exactly('dendyarasu');
+			japanese.romanize('まんぢゅう', 'nihon').should.be.exactly('mandyū');
+			japanese.romanize('はなぢょうちん', 'nihon').should.be.exactly('hanadyōtin');
+
+			japanese.romanize('くうぼをきゅう', 'nihon').should.be.exactly('kūbowokyū');
+		});
+	});
 });
