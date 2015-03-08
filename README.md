@@ -61,9 +61,120 @@ japanese.katakanize('ゐ゙よろん');         // ヸヨロン
 japanese.katakanize('本日ゟかき氷解禁'); // 本日ヨリカキ氷解禁
 ```
 
+### japanese.romanize(text[, config])
+
+Convert input text into romaji.
+
+**important**: Most of definitions of Japanese text romanizations requires total recognition of
+Japanese text, but [robots cannot actually think or understand](http://www.cleverbot.com/)!
+Herewith some conversions are hopelessly poor, for example, ISO 3602 defines that "こうし" which
+means "講師" must be romanized as "kôsi", while "こうし" which means "子牛" must be romanized
+as "kousi" (because 子牛 is mixed word of 子 and 牛), though these are apparently the same
+in Kana formed text. Yet japanese.js is very... very very hardly tested, this module (and
+any other romanization machines) cannot distinguish these semantics. So unfortunately, you
+cannot use this function as official writing or something. Ugh.
+
+#### Arguments
+
+* `text` The text to romanize
+* `config` The configuration object or string used to romanize. Described below.
+
+#### Example
+
+```js
+japanese.romanize('れんあいかんじょう');       // ren'aikanjō
+japanese.romanize('ツァトゥグァ');             // tsatugwa
+japanese.romanize('くうぼをきゅう', 'kunrei'); // kûbookyû
+japanese.romanize('でんぢゃらす', 'nihon');    // dendyarasu
+japanese.romanize('いいづか とおる', {
+	'いい': 'ii',
+	'おお': 'oh',
+});                                            // iizuka tohru
+```
+
+#### Configs
+
+Config is represented as plain object, which object keys stand for a collection of
+similar characters, and the value determines how these characters are converted.
+So the object is not just the same with conversion table.
+
+Available parameters are following.
+
+| Key  | Available Values    |
+|------|---------------------|
+| し   | si, shi             |
+| ち   | ti, chi             |
+| つ   | tu, tsu             |
+| ふ   | hu, fu              |
+| じ   | zi, ji              |
+| ぢ   | di, zi, ji          |
+| づ   | du, zu              |
+| ああ | aa, ah, â, ā, a     |
+| いい | ii, ih, î, ī, i     |
+| うう | uu, uh, û, ū, u     |
+| ええ | ee, eh, ê, ē, e     |
+| おお | oo, oh, ô, ō, o     |
+| あー | aa, ah, â, ā, a     |
+| えい | ei, ee, eh, ê, ē, e |
+| おう | ou, oo, oh, ô, ō, o |
+| んあ | na, n'a, n-a        |
+| んば | nba, mba            |
+| っち | tti, tchi           |
+| ゐ   | i, wi               |
+| を   | o, wo               |
+
+You can also specify these predefined configs by supplying string. Default is **wikipedia**.
+
+|      | 'wikipedia' | 'traditional hepburn' | 'modified hepburn' | 'kunrei' | 'nihon' |
+|------|-------------|-----------------------|--------------------|----------|---------|
+| し   | shi         | shi                   | shi                | si       | si      |
+| ち   | chi         | chi                   | chi                | ti       | ti      |
+| つ   | tsu         | tsu                   | tsu                | tu       | tu      |
+| ふ   | fu          | fu                    | fu                 | hu       | hu      |
+| じ   | ji          | ji                    | ji                 | zi       | zi      |
+| ぢ   | ji          | ji                    | ji                 | zi       | di      |
+| づ   | zu          | zu                    | zu                 | zu       | du      |
+| ああ | aa          | aa                    | ā                  | â        | ā       |
+| いい | ii          | ii                    | ii                 | î        | ī       |
+| うう | ū           | ū                     | ū                  | û        | ū       |
+| ええ | ee          | ee                    | ē                  | ê        | ē       |
+| おお | ō           | ō                     | ō                  | ô        | ō       |
+| あー | ā           | ā                     | ā                  | â        | ā       |
+| えい | ei          | ei                    | ei                 | ei       | ei      |
+| おう | ō           | ō                     | ō                  | ô        | ō       |
+| んあ | n'a         | n-a                   | n'a                | n'a      | n'a     |
+| んば | nba         | mba                   | nba                | nba      | nba     |
+| っち | tchi        | tchi                  | tchi               | tti      | tti     |
+| ゐ   | i           | i                     | i                  | i        | wi      |
+| を   | o           | wo                    | o                  | o        | wo      |
+
+And here are short notes about these romanizations.
+
+##### Wikipedia style
+
+Source: http://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Japan-related_articles#Romanization
+
+The most modern and widely used form of romanization. Wikipedia uses this guideline to name
+their article title and text. This is mixed version of traditional and modified Hepburn
+and easyly recognized for everyone.
+
+##### Traditional and Modified Hepburn
+
+Source: http://en.wikipedia.org/wiki/Hepburn_romanization
+
+Actually this is not the specification. Hepburn romanization is very widely known but nobody
+other than Hepburn knows the REAL definition of these method.
+
+##### Kunrei-shiki and Nihon-shiki
+
+Source: http://www.iso.org/iso/catalogue_detail.htm?csnumber=9029
+
+Kunrei-shiki is defined as ISO 9029 and Nihon-shiki as ISO 9209 Strict. These romanizations
+are today a kind of obsolete but still only standardized romanization in the world.
+
+
 ## Roadmap
 
-* japanese.romanize()
 * japanese.deromanize()
 * japanese.cyrillize()
 * japanese.decyrillize()
@@ -76,7 +187,7 @@ japanese.katakanize('本日ゟかき氷解禁'); // 本日ヨリカキ氷解禁
 * japanese.isJoyoKanji()
 * japanese.isKinsoku() (JIS X 4051 compatibility is preferred)
 
-...and any proposal or idea for enhancing japanese.js is welcomed! [Tell me](https://github.com/hakatashi/japanese.js/issues), [tell me](https://twitter.com/intent/tweet?text=@hakatashi+I+have+a+great+idea+for+enhancing+your+japanese.js.+That+is...), [tell me](mailto:hakatasiloving@gmail.com)!
+...and any proposal or idea for enhancing japanese.js is welcomed! [Tell me](https://github.com/hakatashi/japanese.js/issues), [tell me](https://twitter.com/intent/tweet?text=Hey+@hakatashi+I+have+a+great+idea+for+enhancing+japanese.js.+That+is...), [tell me](mailto:hakatasiloving@gmail.com)!
 
 ## License
 

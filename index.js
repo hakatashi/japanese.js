@@ -324,7 +324,7 @@ japanese.romanizationConfigs = {
 		'ち': 'ti',
 		'つ': 'tu',
 		'ふ': 'hu',
-		'じ': 'di',
+		'じ': 'zi',
 		'ぢ': 'di',
 		'づ': 'du',
 		'ああ': 'ā',
