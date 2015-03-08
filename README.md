@@ -17,6 +17,14 @@ var japanese = require('japanese');
 japanese.hiraganize('ヱヴァンゲリヲン');
 ```
 
+For crazy syntax sugar junkies:
+
+```js
+var japanese = require('japanese/sugar');
+
+'ヱヴァンゲリヲン'.hiraganize();
+```
+
 ## API
 
 ### japanese.hiraganize(text)
