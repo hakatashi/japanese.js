@@ -19,7 +19,7 @@ japanese.hiraganize('ヱヴァンゲリヲン');
 
 ## API
 
-### japanesee.hiraganize(text)
+### japanese.hiraganize(text)
 
 Covert input katakana into hiragara.
 
@@ -36,7 +36,7 @@ japanese.hiraganize('ヹルタースオリジナル'); // ゑ゙るたーすお�
 japanese.hiraganize('板垣死ス𪜈');           // 板垣死すとも
 ```
 
-### japanesee.katakanize(text)
+### japanese.katakanize(text)
 
 Covert input hiragana into katakana.
 
