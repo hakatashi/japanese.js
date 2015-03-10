@@ -502,5 +502,118 @@ describe('japanese.romanize()', function () {
 				'じ': 'ji'
 			}).should.be.exactly('arujajīranohijōyōjettonosōjū');
 		});
+
+		it('must be properly customizable with ぢ parameter', function () {
+			japanese.romanize('アルヂャヂーラのひぢょうようヂェットのそうぢゅう', {
+				'ぢ': 'di'
+			}).should.be.exactly('arudyadīranohidyōyōdyettonosōdyū');
+			japanese.romanize('デュラララのエンディング', {'ぢ': 'di'}).should.be.exactly('deurararanoendeingu');
+
+			japanese.romanize('アルヂャヂーラのひぢょうようヂェットのそうぢゅう', {
+				'ぢ': 'zi'
+			}).should.be.exactly('aruzyazīranohizyōyōzyettonosōzyū');
+			japanese.romanize('デュラララのエンディング', {'ぢ': 'zi'}).should.be.exactly('dyurararanoendingu');
+
+			japanese.romanize('アルヂャヂーラのひぢょうようヂェットのそうぢゅう', {
+				'ぢ': 'ji'
+			}).should.be.exactly('arujajīranohijōyōjettonosōjū');
+			japanese.romanize('デュラララのエンディング', {'ぢ': 'ji'}).should.be.exactly('dyurararanoendingu');
+		});
+
+		it('must be properly customizable with づ parameter', function () {
+			japanese.romanize('いなづま', {'づ': 'du'}).should.be.exactly('inaduma');
+			japanese.romanize('デラ・モチマッヅィ', {'づ': 'du'}).should.be.exactly('dera-mochimaddui');
+			japanese.romanize('しきえいきヤマザナドゥ', {'づ': 'du'}).should.be.exactly('shikieikiyamazanadou');
+
+			japanese.romanize('いなづま', {'づ': 'zu'}).should.be.exactly('inazuma');
+			japanese.romanize('デラ・モチマッヅィ', {'づ': 'zu'}).should.be.exactly('dera-mochimazzui');
+			japanese.romanize('しきえいきヤマザナドゥ', {'づ': 'zu'}).should.be.exactly('shikieikiyamazanadu');
+		});
+
+		it('must be properly customizable with ああ parameter', function () {
+			japanese.romanize('まあ、そうなるな', {'ああ': 'aa'}).should.be.exactly('maa,sōnaruna');
+			japanese.romanize('おかあさんといっしょ', {'ああ': 'aa'}).should.be.exactly('okaasantoissho');
+
+			japanese.romanize('まあ、そうなるな', {'ああ': 'ah'}).should.be.exactly('mah,sōnaruna');
+			japanese.romanize('おかあさんといっしょ', {'ああ': 'ah'}).should.be.exactly('okahsantoissho');
+
+			japanese.romanize('まあ、そうなるな', {'ああ': 'â'}).should.be.exactly('mâ,sōnaruna');
+			japanese.romanize('おかあさんといっしょ', {'ああ': 'â'}).should.be.exactly('okâsantoissho');
+
+			japanese.romanize('まあ、そうなるな', {'ああ': 'ā'}).should.be.exactly('mā,sōnaruna');
+			japanese.romanize('おかあさんといっしょ', {'ああ': 'ā'}).should.be.exactly('okāsantoissho');
+
+			japanese.romanize('まあ、そうなるな', {'ああ': 'a'}).should.be.exactly('ma,sōnaruna');
+			japanese.romanize('おかあさんといっしょ', {'ああ': 'a'}).should.be.exactly('okasantoissho');
+		});
+
+		it('must be properly customizable with いい parameter', function () {
+			japanese.romanize('くもいいちりん', {'いい': 'ii'}).should.be.exactly('kumoiichirin');
+			japanese.romanize('ほしいみき', {'いい': 'ii'}).should.be.exactly('hoshiimiki');
+
+			japanese.romanize('くもいいちりん', {'いい': 'ih'}).should.be.exactly('kumoihchirin');
+			japanese.romanize('ほしいみき', {'いい': 'ih'}).should.be.exactly('hoshihmiki');
+
+			japanese.romanize('くもいいちりん', {'いい': 'î'}).should.be.exactly('kumoîchirin');
+			japanese.romanize('ほしいみき', {'いい': 'î'}).should.be.exactly('hoshîmiki');
+
+			japanese.romanize('くもいいちりん', {'いい': 'ī'}).should.be.exactly('kumoīchirin');
+			japanese.romanize('ほしいみき', {'いい': 'ī'}).should.be.exactly('hoshīmiki');
+
+			japanese.romanize('くもいいちりん', {'いい': 'i'}).should.be.exactly('kumoichirin');
+			japanese.romanize('ほしいみき', {'いい': 'i'}).should.be.exactly('hoshimiki');
+		});
+
+		it('must be properly customizable with うう parameter', function () {
+			japanese.romanize('すずみやハルヒのゆううつ', {'うう': 'uu'}).should.be.exactly('suzumiyaharuhinoyuuutsu');
+			japanese.romanize('やじゅうせんぱい', {'うう': 'uu'}).should.be.exactly('yajuusenpai');
+
+			japanese.romanize('すずみやハルヒのゆううつ', {'うう': 'uh'}).should.be.exactly('suzumiyaharuhinoyuhutsu');
+			japanese.romanize('やじゅうせんぱい', {'うう': 'uh'}).should.be.exactly('yajuhsenpai');
+
+			japanese.romanize('すずみやハルヒのゆううつ', {'うう': 'û'}).should.be.exactly('suzumiyaharuhinoyûutsu');
+			japanese.romanize('やじゅうせんぱい', {'うう': 'û'}).should.be.exactly('yajûsenpai');
+
+			japanese.romanize('すずみやハルヒのゆううつ', {'うう': 'ū'}).should.be.exactly('suzumiyaharuhinoyūutsu');
+			japanese.romanize('やじゅうせんぱい', {'うう': 'ū'}).should.be.exactly('yajūsenpai');
+
+			// TODO: should be 'suzumiyaharuhinoyuutsu'
+			japanese.romanize('すずみやハルヒのゆううつ', {'うう': 'u'}).should.be.exactly('suzumiyaharuhinoyutsu');
+			japanese.romanize('やじゅうせんぱい', {'うう': 'u'}).should.be.exactly('yajusenpai');
+		});
+
+		it('must be properly customizable with ええ parameter', function () {
+			japanese.romanize('はるうええりい', {'ええ': 'ee'}).should.be.exactly('harūeerii');
+			japanese.romanize('ナナシノゲエム', {'ええ': 'ee'}).should.be.exactly('nanashinogeemu');
+
+			japanese.romanize('はるうええりい', {'ええ': 'eh'}).should.be.exactly('harūehrii');
+			japanese.romanize('ナナシノゲエム', {'ええ': 'eh'}).should.be.exactly('nanashinogehmu');
+
+			japanese.romanize('はるうええりい', {'ええ': 'ê'}).should.be.exactly('harūêrii');
+			japanese.romanize('ナナシノゲエム', {'ええ': 'ê'}).should.be.exactly('nanashinogêmu');
+
+			japanese.romanize('はるうええりい', {'ええ': 'ē'}).should.be.exactly('harūērii');
+			japanese.romanize('ナナシノゲエム', {'ええ': 'ē'}).should.be.exactly('nanashinogēmu');
+
+			japanese.romanize('はるうええりい', {'ええ': 'e'}).should.be.exactly('harūerii');
+			japanese.romanize('ナナシノゲエム', {'ええ': 'e'}).should.be.exactly('nanashinogemu');
+		});
+
+		it('must be properly customizable with おお parameter', function () {
+			japanese.romanize('おおつぼゆか', {'おお': 'oo'}).should.be.exactly('ootsuboyuka');
+			japanese.romanize('ソードアートオンライン', {'おお': 'oo'}).should.be.exactly('sōdoātoonrain');
+
+			japanese.romanize('おおつぼゆか', {'おお': 'oh'}).should.be.exactly('ohtsuboyuka');
+			japanese.romanize('ソードアートオンライン', {'おお': 'oh'}).should.be.exactly('sōdoātohnrain');
+
+			japanese.romanize('おおつぼゆか', {'おお': 'ô'}).should.be.exactly('ôtsuboyuka');
+			japanese.romanize('ソードアートオンライン', {'おお': 'ô'}).should.be.exactly('sōdoātônrain');
+
+			japanese.romanize('おおつぼゆか', {'おお': 'ō'}).should.be.exactly('ōtsuboyuka');
+			japanese.romanize('ソードアートオンライン', {'おお': 'ō'}).should.be.exactly('sōdoātōnrain');
+
+			japanese.romanize('おおつぼゆか', {'おお': 'o'}).should.be.exactly('otsuboyuka');
+			japanese.romanize('ソードアートオンライン', {'おお': 'o'}).should.be.exactly('sōdoātonrain');
+		});
 	});
 });
