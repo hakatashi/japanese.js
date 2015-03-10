@@ -220,13 +220,13 @@ japanese.romanizationTable = {
 	'でぇ': 'dee',
 	'でょ': 'deo',
 	'どぅ': 'dou',
-	'ふぁ': 'fa',
-	'ふぃ': 'fi',
-	'ふぇ': 'fe',
-	'ふぉ': 'fo',
-	'ふゃ': 'fya',
-	'ふゅ': 'fyu',
-	'ふょ': 'fyo',
+	'ふぁ': 'hua',
+	'ふぃ': 'hui',
+	'ふぇ': 'hue',
+	'ふぉ': 'huo',
+	'ふゃ': 'huya',
+	'ふゅ': 'huyu',
+	'ふょ': 'huyo',
 	'ほぅ': 'hu',
 	'ら゚': 'la',
 	'り゚': 'li',
@@ -427,6 +427,9 @@ japanese.romanize = function (string, config) {
 			'ふぃ': 'fi',
 			'ふぇ': 'fe',
 			'ふぉ': 'fo',
+			'ふゃ': 'fya',
+			'ふゅ': 'fyu',
+			'ふょ': 'fyo',
 		});
 	}
 
@@ -486,6 +489,10 @@ japanese.romanize = function (string, config) {
 		extend(table, {
 			'を': 'o',
 		});
+	}
+
+	if (string.match(/.*トゥモロー.*/)) {
+		console.log(string, table, config);
 	}
 
 	string = japanese.hiraganize(string);

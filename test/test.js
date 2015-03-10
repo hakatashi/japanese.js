@@ -448,5 +448,59 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('モンテクリストはく', config).should.be.exactly('montekurisutohaku');
 			japanese.romanize('べにすにしす', config).should.be.exactly('benisunishisu');
 		});
+
+		it('must be properly customizable with し parameter', function () {
+			japanese.romanize('しゅうごうしゃしん', {'し': 'si'}).should.be.exactly('syūgōsyasin');
+			japanese.romanize('シェークスピアのしょうせつ', {'し': 'si'}).should.be.exactly('syēkusupianosyōsetsu');
+
+			japanese.romanize('しゅうごうしゃしん', {'し': 'shi'}).should.be.exactly('shūgōshashin');
+			japanese.romanize('シェークスピアのしょうせつ', {'し': 'shi'}).should.be.exactly('shēkusupianoshōsetsu');
+		});
+
+		it('must be properly customizable with ち parameter', function () {
+			japanese.romanize('ちっちゃいそんちょう', {'ち': 'ti'}).should.be.exactly('titchaisontyō');
+			japanese.romanize('ちゃいろいチェーン', {'ち': 'ti'}).should.be.exactly('tyairoityēn');
+			japanese.romanize('テュールのティータイム', {'ち': 'ti'}).should.be.exactly('teūrunoteītaimu');
+
+			japanese.romanize('ちっちゃいそんちょう', {'ち': 'chi'}).should.be.exactly('chitchaisonchō');
+			japanese.romanize('ちゃいろいチェーン', {'ち': 'chi'}).should.be.exactly('chairoichēn');
+			japanese.romanize('テュールのティータイム', {'ち': 'chi'}).should.be.exactly('tyūrunotītaimu');
+		});
+
+		it('must be properly customizable with つ parameter', function () {
+			japanese.romanize('バイツァダスト', {'つ': 'tu'}).should.be.exactly('baituadasuto');
+			japanese.romanize('カンツォーネ', {'つ': 'tu'}).should.be.exactly('kantuōne');
+			japanese.romanize('トゥーツ・シールマンス', {'つ': 'tu'}).should.be.exactly('toūtu-shīrumansu');
+			japanese.romanize('ツィゴイネルワイゼン', {'つ': 'tu'}).should.be.exactly('tuigoineruwaizen');
+			japanese.romanize('ツェッペリン', {'つ': 'tu'}).should.be.exactly('tuepperin');
+			japanese.romanize('ツュループィンシク', {'つ': 'tu'}).should.be.exactly('tuyurūpuinshiku');
+
+			japanese.romanize('バイツァダスト', {'つ': 'tsu'}).should.be.exactly('baitsadasuto');
+			japanese.romanize('カンツォーネ', {'つ': 'tsu'}).should.be.exactly('kantsōne');
+			japanese.romanize('トゥーツ・シールマンス', {'つ': 'tsu'}).should.be.exactly('tūtsu-shīrumansu');
+			japanese.romanize('ツィゴイネルワイゼン', {'つ': 'tsu'}).should.be.exactly('tsigoineruwaizen');
+			japanese.romanize('ツェッペリン', {'つ': 'tsu'}).should.be.exactly('tsepperin');
+			japanese.romanize('ツュループィンシク', {'つ': 'tsu'}).should.be.exactly('tsyurūpuinshiku');
+		});
+
+		it('must be properly customizable with ふ parameter', function () {
+			japanese.romanize('フィファ（フェデレーション・インターナショナル・ド・フットボール・アソシエーション）のフォーメーション', {
+				'ふ': 'hu'
+			}).should.be.exactly('huihua(huederēshon-intānashonaru-do-huttobōru-asoshiēshon)nohuōmēshon');
+
+			japanese.romanize('フィファ（フェデレーション・インターナショナル・ド・フットボール・アソシエーション）のフォーメーション', {
+				'ふ': 'fu'
+			}).should.be.exactly('fifa(federēshon-intānashonaru-do-futtobōru-asoshiēshon)nofōmēshon');
+		});
+
+		it('must be properly customizable with じ parameter', function () {
+			japanese.romanize('アルジャジーラのひじょうようジェットのそうじゅう', {
+				'じ': 'zi'
+			}).should.be.exactly('aruzyazīranohizyōyōzyettonosōzyū');
+
+			japanese.romanize('アルジャジーラのひじょうようジェットのそうじゅう', {
+				'じ': 'ji'
+			}).should.be.exactly('arujajīranohijōyōjettonosōjū');
+		});
 	});
 });
