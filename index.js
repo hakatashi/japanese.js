@@ -523,14 +523,32 @@ japanese.romanize = function (string, config) {
 		// small tsu
 		if (previousToken === 'っ') {
 			if (tokenDest.match(/^[^aiueo]/)) {
-				if (config['っち'] === 'tchi' && token[0] === 'ち') {
-					tokenDest = {
-						'ち': 'tchi',
-						'ちゃ': 'tcha',
-						'ちゅ': 'tchu',
-						'ちぇ': 'tche',
-						'ちょ': 'tcho',
-					}[token];
+				if (token[0] === 'ち') {
+					if (config['っち'] === 'tchi') {
+						tokenDest = {
+							'ち': 'tchi',
+							'ちゃ': 'tcha',
+							'ちゅ': 'tchu',
+							'ちぇ': 'tche',
+							'ちょ': 'tcho',
+						}[token];
+					} else if (config['っち'] === 'cchi') {
+						tokenDest = {
+							'ち': 'cchi',
+							'ちゃ': 'ccha',
+							'ちゅ': 'cchu',
+							'ちぇ': 'cche',
+							'ちょ': 'ccho',
+						}[token];
+					} else { // normally 'tti'
+						tokenDest = {
+							'ち': 'tti',
+							'ちゃ': 'ttya',
+							'ちゅ': 'ttyu',
+							'ちぇ': 'ttye',
+							'ちょ': 'ttyo',
+						}[token];
+					}
 				} else {
 					tokenDest = tokenDest[0] + tokenDest;
 				}

@@ -119,7 +119,7 @@ Available parameters are following.
 | おう | ou, oo, oh, ô, ō, o |
 | んあ | na, n'a, n-a        |
 | んば | nba, mba            |
-| っち | tti, tchi           |
+| っち | tti, tchi, cchi     |
 | ゐ   | i, wi               |
 | を   | o, wo               |
 
