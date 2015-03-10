@@ -491,10 +491,6 @@ japanese.romanize = function (string, config) {
 		});
 	}
 
-	if (string.match(/.*トゥモロー.*/)) {
-		console.log(string, table, config);
-	}
-
 	string = japanese.hiraganize(string);
 
 	var dest = '';
