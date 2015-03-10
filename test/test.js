@@ -670,5 +670,21 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('ひだまりスケッチ', {'っち': 'cchi'}).should.be.exactly('hidamarisukecchi');
 			japanese.romanize('まっちょしぃ', {'っち': 'cchi'}).should.be.exactly('macchoshii');
 		});
+
+		it('must be properly customizable with ゐ parameter', function () {
+			japanese.romanize('いなばてゐ', {'ゐ': 'i'}).should.be.exactly('inabatei');
+			japanese.romanize('ヱヴァンゲリヲン', {'ゐ': 'i'}).should.be.exactly('evangerion');
+
+			japanese.romanize('いなばてゐ', {'ゐ': 'wi'}).should.be.exactly('inabatewi');
+			japanese.romanize('ヱヴァンゲリヲン', {'ゐ': 'wi'}).should.be.exactly('wevangerion');
+		});
+
+		it('must be properly customizable with を parameter', function () {
+			japanese.romanize('パパのいうことをききなさい!', {'を': 'o'}).should.be.exactly('papanoiukotookikinasai');
+			japanese.romanize('をきゅうくうぼ', {'を': 'o'}).should.be.exactly('okyūkūbo');
+
+			japanese.romanize('パパのいうことをききなさい!', {'を': 'wo'}).should.be.exactly('papanoiukotowokikinasai');
+			japanese.romanize('をきゅうくうぼ', {'を': 'wo'}).should.be.exactly('wokyūkūbo');
+		});
 	});
 });
