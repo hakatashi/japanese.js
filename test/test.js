@@ -642,5 +642,33 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('とうほうえいやしょう', {'おう': 'ō'}).should.be.exactly('tōhōeiyashō');
 			japanese.romanize('とうほうえいやしょう', {'おう': 'o'}).should.be.exactly('tohoeiyasho');
 		});
+
+		it('must be properly customizable with んあ parameter', function () {
+			japanese.romanize('きんいろモザイク', {'んあ': 'na'}).should.be.exactly('kiniromozaiku');
+			japanese.romanize('うちゅうせんかんヤマト', {'んあ': 'na'}).should.be.exactly('uchūsenkanyamato');
+			japanese.romanize('きんいろモザイク', {'んあ': 'n\'a'}).should.be.exactly('kin\'iromozaiku');
+			japanese.romanize('うちゅうせんかんヤマト', {'んあ': 'n\'a'}).should.be.exactly('uchūsenkan\'yamato');
+			japanese.romanize('きんいろモザイク', {'んあ': 'n-a'}).should.be.exactly('kin-iromozaiku');
+			japanese.romanize('うちゅうせんかんヤマト', {'んあ': 'n-a'}).should.be.exactly('uchūsenkan-yamato');
+		});
+
+		it('must be properly customizable with んば parameter', function () {
+			japanese.romanize('のんのんびよりなんみん', {'んば': 'nba'}).should.be.exactly('nonnonbiyorinanmin');
+			japanese.romanize('こころぴょんぴょん', {'んば': 'nba'}).should.be.exactly('kokoropyonpyon');
+
+			japanese.romanize('のんのんびよりなんみん', {'んば': 'mba'}).should.be.exactly('nonnombiyorinammin');
+			japanese.romanize('こころぴょんぴょん', {'んば': 'mba'}).should.be.exactly('kokoropyompyon');
+		});
+
+		it('must be properly customizable with っち parameter', function () {
+			japanese.romanize('ひだまりスケッチ', {'っち': 'tti'}).should.be.exactly('hidamarisuketti');
+			japanese.romanize('まっちょしぃ', {'っち': 'tti'}).should.be.exactly('mattyoshii');
+
+			japanese.romanize('ひだまりスケッチ', {'っち': 'tchi'}).should.be.exactly('hidamarisuketchi');
+			japanese.romanize('まっちょしぃ', {'っち': 'tchi'}).should.be.exactly('matchoshii');
+
+			japanese.romanize('ひだまりスケッチ', {'っち': 'cchi'}).should.be.exactly('hidamarisukecchi');
+			japanese.romanize('まっちょしぃ', {'っち': 'cchi'}).should.be.exactly('macchoshii');
+		});
 	});
 });
