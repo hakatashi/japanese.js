@@ -1,6 +1,6 @@
 {
   "name": "japanese",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Util collection for Japanese text processing. Hiraganize, Katakanize, and Romanize.",
   "homepage": "https://github.com/hakatashi/japanese.js",
   "author": {

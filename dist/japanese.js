@@ -221,13 +221,13 @@ japanese.romanizationTable = {
 	'でぇ': 'dee',
 	'でょ': 'deo',
 	'どぅ': 'dou',
-	'ふぁ': 'fa',
-	'ふぃ': 'fi',
-	'ふぇ': 'fe',
-	'ふぉ': 'fo',
-	'ふゃ': 'fya',
-	'ふゅ': 'fyu',
-	'ふょ': 'fyo',
+	'ふぁ': 'hua',
+	'ふぃ': 'hui',
+	'ふぇ': 'hue',
+	'ふぉ': 'huo',
+	'ふゃ': 'huya',
+	'ふゅ': 'huyu',
+	'ふょ': 'huyo',
 	'ほぅ': 'hu',
 	'ら゚': 'la',
 	'り゚': 'li',
@@ -428,6 +428,9 @@ japanese.romanize = function (string, config) {
 			'ふぃ': 'fi',
 			'ふぇ': 'fe',
 			'ふぉ': 'fo',
+			'ふゃ': 'fya',
+			'ふゅ': 'fyu',
+			'ふょ': 'fyo',
 		});
 	}
 
@@ -517,14 +520,32 @@ japanese.romanize = function (string, config) {
 		// small tsu
 		if (previousToken === 'っ') {
 			if (tokenDest.match(/^[^aiueo]/)) {
-				if (config['っち'] === 'tchi' && token[0] === 'ち') {
-					tokenDest = {
-						'ち': 'tchi',
-						'ちゃ': 'tcha',
-						'ちゅ': 'tchu',
-						'ちぇ': 'tche',
-						'ちょ': 'tcho',
-					}[token];
+				if (token[0] === 'ち') {
+					if (config['っち'] === 'tchi') {
+						tokenDest = {
+							'ち': 'tchi',
+							'ちゃ': 'tcha',
+							'ちゅ': 'tchu',
+							'ちぇ': 'tche',
+							'ちょ': 'tcho',
+						}[token];
+					} else if (config['っち'] === 'cchi') {
+						tokenDest = {
+							'ち': 'cchi',
+							'ちゃ': 'ccha',
+							'ちゅ': 'cchu',
+							'ちぇ': 'cche',
+							'ちょ': 'ccho',
+						}[token];
+					} else { // normally 'tti'
+						tokenDest = {
+							'ち': 'tti',
+							'ちゃ': 'ttya',
+							'ちゅ': 'ttyu',
+							'ちぇ': 'ttye',
+							'ちょ': 'ttyo',
+						}[token];
+					}
 				} else {
 					tokenDest = tokenDest[0] + tokenDest;
 				}
@@ -545,6 +566,8 @@ japanese.romanize = function (string, config) {
 					// nope
 				} else if (config['あー'] === 'ah') {
 					dest += 'h';
+				} else if (config['あー'] === 'a-') {
+					dest += '-';
 				} else if (config['あー'] === 'aa') {
 					dest = dest.slice(0, -1) + {
 						'a': 'aa',
@@ -575,31 +598,41 @@ japanese.romanize = function (string, config) {
 			} else {
 				tokenDest = '-';
 			}
-		}
+		} else if (dest.slice(-1) === 'e' && tokenDest[0] === 'i') {
+			tokenDest = tokenDest.slice(1);
 
-		var isLongVowel = false;
-		if (dest.slice(-1) === 'e' && tokenDest[0] === 'i') {
 			if (config['えい'] === 'ei') {
+				dest += 'i';
+			} else if (config['えい'] === 'ee') {
+				dest += 'e';
+			} else if (config['えい'] === 'eh') {
+				dest += 'h';
+			} else if (config['えい'] === 'ê') {
+				dest = dest.slice(0, -1) + 'ê';
+			} else if (config['えい'] === 'ē') {
+				dest = dest.slice(0, -1) + 'ē';
+			} else if (config['えい'] === 'e') {
 				// nope
-			} else {
-				isLongVowel = true;
-				tokenDest = tokenDest.slice(1);
 			}
 		} else if (dest.slice(-1) === 'o' && tokenDest[0] === 'u') {
+			tokenDest = tokenDest.slice(1);
+
 			if (config['おう'] === 'ou') {
-				// nope
+				dest += 'u';
 			} else if (config['おう'] === 'oo') {
-				tokenDest = 'o' + tokenDest.slice(1);
-			} else {
-				isLongVowel = true;
-				tokenDest = tokenDest.slice(1);
+				dest += 'o';
+			} else if (config['おう'] === 'oh') {
+				dest += 'h';
+			} else if (config['おう'] === 'ô') {
+				dest = dest.slice(0, -1) + 'ô';
+			} else if (config['おう'] === 'ō') {
+				dest = dest.slice(0, -1) + 'ō';
+			} else if (config['おう'] === 'o') {
+				// nope
 			}
 		} else if (dest.match(/[aiueo]$/) && dest.slice(-1) === tokenDest[0] && token !== 'を') {
-			isLongVowel = true;
 			tokenDest = tokenDest.slice(1);
-		}
 
-		if (isLongVowel) {
 			dest = dest.slice(0, -1) + config[{
 				'a': 'ああ',
 				'i': 'いい',
