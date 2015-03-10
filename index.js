@@ -569,6 +569,8 @@ japanese.romanize = function (string, config) {
 					// nope
 				} else if (config['あー'] === 'ah') {
 					dest += 'h';
+				} else if (config['あー'] === 'a-') {
+					dest += '-';
 				} else if (config['あー'] === 'aa') {
 					dest = dest.slice(0, -1) + {
 						'a': 'aa',

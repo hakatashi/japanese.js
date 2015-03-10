@@ -114,7 +114,7 @@ Available parameters are following.
 | うう | uu, uh, û, ū, u     |
 | ええ | ee, eh, ê, ē, e     |
 | おお | oo, oh, ô, ō, o     |
-| あー | aa, ah, â, ā, a     |
+| あー | a-, aa, ah, â, ā, a |
 | えい | ei, ee, eh, ê, ē, e |
 | おう | ou, oo, oh, ô, ō, o |
 | んあ | na, n'a, n-a        |
