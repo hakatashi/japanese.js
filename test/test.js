@@ -615,5 +615,32 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('おおつぼゆか', {'おお': 'o'}).should.be.exactly('otsuboyuka');
 			japanese.romanize('ソードアートオンライン', {'おお': 'o'}).should.be.exactly('sōdoātonrain');
 		});
+
+		it('must be properly customizable with あー parameter', function () {
+			japanese.romanize('トレーディングカードゲーム', {'あー': 'a-'}).should.be.exactly('tore-dinguka-doge-mu');
+			japanese.romanize('トレーディングカードゲーム', {'あー': 'aa'}).should.be.exactly('toreedingukaadogeemu');
+			japanese.romanize('トレーディングカードゲーム', {'あー': 'ah'}).should.be.exactly('torehdingukahdogehmu');
+			japanese.romanize('トレーディングカードゲーム', {'あー': 'â'}).should.be.exactly('torêdingukâdogêmu');
+			japanese.romanize('トレーディングカードゲーム', {'あー': 'ā'}).should.be.exactly('torēdingukādogēmu');
+			japanese.romanize('トレーディングカードゲーム', {'あー': 'a'}).should.be.exactly('toredingukadogemu');
+		});
+
+		it('must be properly customizable with あー parameter', function () {
+			japanese.romanize('えいせいへい', {'えい': 'ei'}).should.be.exactly('eiseihei');
+			japanese.romanize('えいせいへい', {'えい': 'ee'}).should.be.exactly('eeseehee');
+			japanese.romanize('えいせいへい', {'えい': 'eh'}).should.be.exactly('ehsehheh');
+			japanese.romanize('えいせいへい', {'えい': 'ê'}).should.be.exactly('êsêhê');
+			japanese.romanize('えいせいへい', {'えい': 'ē'}).should.be.exactly('ēsēhē');
+			japanese.romanize('えいせいへい', {'えい': 'e'}).should.be.exactly('esehe');
+		});
+
+		it('must be properly customizable with おう parameter', function () {
+			japanese.romanize('とうほうえいやしょう', {'おう': 'ou'}).should.be.exactly('touhoueiyashou');
+			japanese.romanize('とうほうえいやしょう', {'おう': 'oo'}).should.be.exactly('toohooeiyashoo');
+			japanese.romanize('とうほうえいやしょう', {'おう': 'oh'}).should.be.exactly('tohhoheiyashoh');
+			japanese.romanize('とうほうえいやしょう', {'おう': 'ô'}).should.be.exactly('tôhôeiyashô');
+			japanese.romanize('とうほうえいやしょう', {'おう': 'ō'}).should.be.exactly('tōhōeiyashō');
+			japanese.romanize('とうほうえいやしょう', {'おう': 'o'}).should.be.exactly('tohoeiyasho');
+		});
 	});
 });
