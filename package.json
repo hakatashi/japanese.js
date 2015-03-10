@@ -30,7 +30,7 @@
   ],
   "dependencies": {
     "extend": "^2.0.0",
-    "meow": "~3.0.0"
+    "meow": "~3.1.0"
   },
   "devDependencies": {
     "browserify": "^7.0.0",
@@ -49,7 +49,7 @@
   },
   "scripts": {
     "test": "grunt",
-    "browser": "browserify index.js > dist/japanese.js"
+    "browser": "browserify index.js > dist/japanese.js && uglifyjs dist/japanese.js > dist/japanese.min.js"
   },
   "bin": {
     "japanese": "cli.js"
