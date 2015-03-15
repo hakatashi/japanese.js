@@ -11,6 +11,7 @@
   "repository": "hakatashi/japanese.js",
   "license": "MIT",
   "files": [
+    "src",
     "index.js",
     "cli.js",
     "sugar.js"
