@@ -5,8 +5,9 @@ var should = require('should');
 var japanese = require('../');
 
 xdescribe('japanese.transcribeNumber()', function () {
-	describe('no options', function () {
+	describe('default options', function () {
 		it('must perfectly transcribe some numbers and strings into japanese', function () {
+			japanese.transcribeNumber(0).should.be.exactly('〇');
 			japanese.transcribeNumber(4).should.be.exactly('四');
 			japanese.transcribeNumber(13).should.be.exactly('十三');
 			japanese.transcribeNumber(334).should.be.exactly('三百三十四');
@@ -122,7 +123,105 @@ xdescribe('japanese.transcribeNumber()', function () {
 				'千八百四十一億',
 				'二千四百八十五万',
 				'八千三百六十八',
+			].join(''));
+		});
+
+		it('must perfectly transcribe negative numbers with facing "マイナス" string', function () {
+			japanese.transcribeNumber(-0).should.be.exactly('マイナス〇');
+			japanese.transcribeNumber(-1).should.be.exactly('マイナス一');
+			japanese.transcribeNumber(-893).should.be.exactly('マイナス八百九十三');
+			japanese.transcribeNumber('-0').should.be.exactly('マイナス〇');
+			japanese.transcribeNumber('-1').should.be.exactly('マイナス一');
+			japanese.transcribeNumber('-114514').should.be.exactly('マイナス十一万四千五百十四');
+		});
+
+		it('must perfectly transcribe very minor numbers into string', function () {
+			// Number.MIN_SAFE_INTEGER
+			japanese.transcribeNumber(-9007199254740991).should.be.exactly([
+				'マイナス',
+				'九千七兆',
+				'千九百九十二億',
+				'五千四百七十四万',
+				'九百九十一',
 			]);
+
+			// PI
+			japanese.transcribeNumber('-314159265358979323846264338327950288419716939937510582097494459230781640').should.be.exactly([
+				'マイナス',
+				'三千百四十一無量大数',
+				'五千九百二十六不可思議',
+				'五千三百五十八那由多',
+				'九千七百九十三阿僧祇',
+				'二千三百八十四恒河沙',
+				'六千二百六十四極',
+				'三千三百八十三載',
+				'二千七百九十五正',
+				'二百八十八澗',
+				'四千百九十七溝',
+				'千六百九十三穣',
+				'九千九百三十七𥝱',
+				'五千百五垓',
+				'八千二百九京',
+				'七千四百九十四兆',
+				'四千五百九十二億',
+				'三千七十八万',
+				'千六百四十',
+			].join(''));
+
+			japanese.transcribeNumber(-Number.MAX_VALUE).should.be.exactly([
+				'マイナス',
+				'一七九七六九三',
+				'一三四八六二三一五七',
+				'〇八一四五二七四二三',
+				'七三一七〇四三五六七',
+				'九八〇七〇五六七五二',
+				'五八四四九九六五九八',
+				'九一七四七六八〇三一',
+				'五七二六〇七八〇〇二',
+				'八五三八七六〇五八九',
+				'五五八六三二七六六八',
+				'七八一七一五四〇四五',
+				'八九五三五一四三八二',
+				'四六四二三四三二一三',
+				'二六八八九四六四一八',
+				'二七六八四六七五四六',
+				'七〇三五三七五一六九',
+				'八六〇四九九一〇五七',
+				'六五五一二八二〇七六',
+				'二四五四九〇〇九〇三',
+				'八九三二八九四四〇七',
+				'五八六八五〇八四五五',
+				'一三三九四二三〇四五',
+				'八三二三六九〇三二二',
+				'二九四八一六五八〇八',
+				'五千五百九十三無量大数',
+				'三千二百十二不可思議',
+				'三千三百四十八那由多',
+				'二千七百四十七阿僧祇',
+				'九千七百八十二恒河沙',
+				'六千二百四極',
+				'千四百四十七載',
+				'二千三百十六正',
+				'八千七百三十八澗',
+				'千七百七十一溝',
+				'八千九十一穣',
+				'九千二百九十九𥝱',
+				'八千八百十二垓',
+				'五千四十京',
+				'四千二十六兆',
+				'千八百四十一億',
+				'二千四百八十五万',
+				'八千三百六十八',
+			].join(''));
+		});
+
+		it('must convert special numbers into string but not ones in the strings', function () {
+			japanese.transcribeNumber(NaN).shouldbe.exactly('非数');
+			japanese.transcribeNumber(Infinity).shouldbe.exactly('無限大');
+			japanese.transcribeNumber(-Infinity).shouldbe.exactly('マイナス無限大');
+			japanese.transcribeNumber('NaN').shouldbe.exactly('NaN');
+			japanese.transcribeNumber('Infinity').shouldbe.exactly('Infinity');
+			japanese.transcribeNumber('-Infinity').shouldbe.exactly('-Infinity');
 		});
 	});
 });
