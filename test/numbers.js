@@ -302,14 +302,14 @@ xdescribe('japanese.transcribeNumber()', function () {
 
 		it('must transcribe comma separated number strings', function () {
 			japanese.transcribeNumber('1,234,567.89')
-				.should.be.exactly('十二億三千四百五十六万七千八百九十・八九');
+				.should.be.exactly('百二十三万四千五百六十七・八九');
 			japanese.transcribeNumber('1,2,34,5,6,7.89')
-				.should.be.exactly('十二億三千四百五十六万七千八百九十・八九');
+				.should.be.exactly('百二十三万四千五百六十七・八九');
 		});
 
 		it('mustn\'t include comma inside of fraction part as number', function () {
 			japanese.transcribeNumber('1,234,567.890,123,456')
-				.should.be.exactly('十二億三千四百五十六万七千八百九十・八九〇,十二万三千四百五十六');
+				.should.be.exactly('百二十三万四千五百六十七・八九〇,十二万三千四百五十六');
 		});
 
 		it('must convert special numbers into string but not ones in the strings', function () {
