@@ -13,6 +13,7 @@ xdescribe('japanese.transcribeNumber()', function () {
 			japanese.transcribeNumber(334).should.be.exactly('三百三十四');
 			japanese.transcribeNumber(2525).should.be.exactly('二千五百二十五');
 			japanese.transcribeNumber(810100081).should.be.exactly('八億千十万八十一');
+			japanese.transcribeNumber(3000000000000).should.be.exactly('三兆');
 			japanese.transcribeNumber('8').should.be.exactly('八');
 			japanese.transcribeNumber('72').should.be.exactly('七十二');
 			japanese.transcribeNumber('52149').should.be.exactly('五万二千百四十九');
@@ -124,6 +125,26 @@ xdescribe('japanese.transcribeNumber()', function () {
 				'二千四百八十五万',
 				'八千三百六十八',
 			].join(''));
+
+			// gooprol
+			japanese.transcribeNumber([
+				'1',
+				'0000000000',
+				'0000000000',
+				'0000000000',
+				'0000000000',
+				'0000000000',
+				'0000000000',
+				'0000000000',
+				'0000000000',
+				'0000000000',
+				'0000000267',
+			].join('')).should.be.exactly([
+				'一〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'千無量大数二百六十七',
+			].join(''));
 		});
 
 		it('must perfectly transcribe negative numbers with facing "マイナス" string', function () {
@@ -215,13 +236,89 @@ xdescribe('japanese.transcribeNumber()', function () {
 			].join(''));
 		});
 
+		it('must perfectly transcribe decimal fractions with fullwidth dot sign', function () {
+			japanese.transcribeNumber(3.14).should.be.exactly('三・一四');
+			japanese.transcribeNumber(249.51).should.be.exactly('二百四十九・五一');
+			japanese.transcribeNumber(802.11).should.be.exactly('八百二・一一');
+			japanese.transcribeNumber(-1995.117).should.be.exactly('マイナス千九百九十五・一一七');
+			japanese.transcribeNumber('1.41421356').should.be.exactly('一・四一四二一三五六');
+			japanese.transcribeNumber('.721454545454545454545454545')
+				.should.be.exactly('〇・七二一四五四五四五四五四五四五四五四五四五四五四五四五');
+		});
+
+		it('must have JavaScript oriented precisions for decimal fractions', function () {
+			japanese.transcribeNumber(1 / 3)
+				.should.be.exactly('〇・三三三三三三三三三三三三三三三三');
+			japanese.transcribeNumber(0.1 + 0.2)
+				.should.be.exactly('〇・三〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇四');
+			japanese.transcribeNumber(1 / 5554560721)
+				.should.be.exactly('〇・〇〇〇〇〇〇〇〇〇一八〇〇三二二三八四一二五三九六二');
+			japanese.transcribeNumber(1234567890.1234567890123456789)
+				.should.be.exactly('十二億三千四百五十六万七千八百九十・一二三四五六七');
+			japanese.transcribeNumber(Number.MIN_VALUE).should.be.exactly([
+				'〇・',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇〇〇〇〇〇〇〇',
+				'〇〇〇五',
+			].join(''));
+		});
+
+		it('must transcribe each occurrence of number in string', function () {
+			japanese.transcribeNumber('2.26事件').should.be.exactly('二・二六事件');
+			japanese.transcribeNumber('2-4-11').should.be.exactly('二-四-十一');
+			japanese.transcribeNumber('毎秒2億9979万2458メートル')
+				.should.be.exactly('毎秒二億九千九百七十九万二千四百五十八メートル');
+		});
+
+		it('must transcribe comma separated number strings', function () {
+			japanese.transcribeNumber('1,234,567.89')
+				.should.be.exactly('十二億三千四百五十六万七千八百九十・八九');
+			japanese.transcribeNumber('1,2,34,5,6,7.89')
+				.should.be.exactly('十二億三千四百五十六万七千八百九十・八九');
+		});
+
+		it('mustn\'t include comma inside of fraction part as number', function () {
+			japanese.transcribeNumber('1,234,567.890,123,456')
+				.should.be.exactly('十二億三千四百五十六万七千八百九十・八九〇,十二万三千四百五十六');
+		});
+
 		it('must convert special numbers into string but not ones in the strings', function () {
-			japanese.transcribeNumber(NaN).shouldbe.exactly('非数');
-			japanese.transcribeNumber(Infinity).shouldbe.exactly('無限大');
-			japanese.transcribeNumber(-Infinity).shouldbe.exactly('マイナス無限大');
-			japanese.transcribeNumber('NaN').shouldbe.exactly('NaN');
-			japanese.transcribeNumber('Infinity').shouldbe.exactly('Infinity');
-			japanese.transcribeNumber('-Infinity').shouldbe.exactly('-Infinity');
+			japanese.transcribeNumber(NaN).should.be.exactly('非数');
+			japanese.transcribeNumber(Infinity).should.be.exactly('無限大');
+			japanese.transcribeNumber(-Infinity).should.be.exactly('マイナス無限大');
+			japanese.transcribeNumber('NaN').should.be.exactly('NaN');
+			japanese.transcribeNumber('Infinity').should.be.exactly('Infinity');
+			japanese.transcribeNumber('-Infinity').should.be.exactly('-Infinity');
 		});
 	});
 });
