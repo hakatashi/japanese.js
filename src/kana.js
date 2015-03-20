@@ -12,14 +12,20 @@ module.exports = function (japanese) {
 			'\\ud869\\udf08\\u3099' + // 𪜈゙
 		'|' +
 			'\\ud869\\udf08' + // 𪜈
+		'|' +
+			'\\ud82c\\udc00' + // 𛀀
 		')',
 	'g');
 
 	japanese.hiraganaRegex = new RegExp(
-		'[' +
-			'\\u3041-\\u3094' + // ぁ～ゔ
-			'\\u309d-\\u309f' + // ゝ～ゟ
-		']',
+		'(' +
+			'[' +
+				'\\u3041-\\u3094' + // ぁ～ゔ
+				'\\u309d-\\u309f' + // ゝ～ゟ
+			']' +
+		'|' +
+			'\\ud82c\\udc01' + // 𛀁
+		')',
 	'g');
 
 	japanese.specialHiraganizationTable = {
@@ -30,10 +36,12 @@ module.exports = function (japanese) {
 		'ヸ': 'ゐ゙',
 		'ヹ': 'ゑ゙',
 		'ヺ': 'を゙',
+		'𛀀': 'え',
 	};
 
 	japanese.specialKatakanizationTable = {
 		'ゟ': 'ヨリ',
+		'𛀁': 'エ',
 	};
 
 	var chr = String.fromCharCode;
