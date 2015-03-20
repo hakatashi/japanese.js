@@ -47,6 +47,10 @@ describe('japanese.hiraganize()', function () {
 		japanese.hiraganize('𛀀クレア').should.be.exactly('えくれあ');
 	});
 
+	it('must transfer unconvertable small katakanaes into big hiragana', function () {
+		japanese.hiraganize('ァィㇲㇰㇼィㇺ').should.be.exactly('ぁぃすくりぃむ');
+	});
+
 	it('must keep small-ka and small-ke untouched', function () {
 		japanese.hiraganize('どら焼 3ヶ入').should.be.exactly('どら焼 3ヶ入');
 		japanese.hiraganize('一ヵ月のダイエット').should.be.exactly('一ヵ月のだいえっと');
