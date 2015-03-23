@@ -180,6 +180,8 @@ are today a kind of obsolete but still only standardized romanization in the wor
 * japanese.decyrillize()
 * japanese.hangulize()
 * japanese.dehangulize()
+* japanese.arabize()
+* japanese.dearabize()
 * japanese.gyarumojize()
 * japanese.isKatakana()
 * japanese.isHiragana()

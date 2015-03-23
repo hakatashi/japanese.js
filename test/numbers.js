@@ -48,7 +48,7 @@ xdescribe('japanese.transcribeNumber()', function () {
 				'九千九百九十九澗',
 				'九千九百九十九溝',
 				'九千九百九十九穣',
-				'九千九百九十九秭',
+				'九千九百九十九𥝱',
 				'九千九百九十九垓',
 				'九千九百九十九京',
 				'九千九百九十九兆',
@@ -60,7 +60,7 @@ xdescribe('japanese.transcribeNumber()', function () {
 			japanese.transcribeNumber('314159265358979323846264338327950288419716939937510582097494459230781640').should.be.exactly([
 				'三千百四十一無量大数',
 				'五千九百二十六不可思議',
-				'五千三百五十八那由多',
+				'五千三百五十八那由他',
 				'九千七百九十三阿僧祇',
 				'二千三百八十四恒河沙',
 				'六千二百六十四極',
@@ -295,7 +295,7 @@ xdescribe('japanese.transcribeNumber()', function () {
 
 		it('must transcribe each occurrence of number in string', function () {
 			japanese.transcribeNumber('2.26事件').should.be.exactly('二・二六事件');
-			japanese.transcribeNumber('2-4-11').should.be.exactly('二-四-十一');
+			japanese.transcribeNumber('2-4-11').should.be.exactly('二マイナス四マイナス十一');
 			japanese.transcribeNumber('50歩100歩').should.be.exactly('五十歩百歩');
 			japanese.transcribeNumber('6000000000000年と1夜物語').should.be.exactly('六兆年と一夜物語');
 			japanese.transcribeNumber('毎秒2億9979万2458メートル')
