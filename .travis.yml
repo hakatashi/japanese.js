@@ -6,3 +6,5 @@ node_js:
 install: npm install
 script: npm test
 after_success: istanbul cover ./node_modules/mocha/bin/_mocha && cat ./coverage/lcov.info | coveralls
+notifications:
+  webhooks: https://webhook.hakatashi.com/travis
