@@ -305,22 +305,9 @@ module.exports = function (japanese) {
 	japanese.transcribeNumber = function (number, config) {
 		if (typeof config === 'undefined') {
 			// default config
-			config = ;
-		}
-
-		if (typeof config === 'string') {
-			config = japanese.romanizationConfigs[config];
-
-			if (typeof config === 'undefined') {
-				throw new ReferenceError('Romanization method "' + config + '" is undefined');
-			}
-		}
-
-		if (typeof config === 'object') {
-			config = extend({}, japanese.defaultRomanizationConfig, config);
-		} else {
-			throw new Error('You specified unknown config to japanese.romanize');
+			config = japanese.transcriptionConfigs['default'];
 		}
 	};
+
 	return japanese;
 };
