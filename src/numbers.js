@@ -1,5 +1,7 @@
 'use strict';
 
+var extend = require('extend');
+
 module.exports = function (japanese) {
 	japanese.transcriptionConfigs = {
 		'default': {
@@ -10,6 +12,17 @@ module.exports = function (japanese) {
 			specialUnitNames: 'none',
 			truncateOne: ['十', '百', '千', '拾', '佰', '阡', '仟'],
 			smallUnitNames: 'none',
+		},
+		formal: {
+			digits: 'formal',
+			unitNames: 'formal',
+			specialUnitNames: 'common',
+			smallUnitNames: 'common',
+		},
+		traditional: {
+			digits: 'traditional',
+			specialUnitNames: 'full',
+			smallUnitNames: 'full',
 		},
 	};
 
@@ -306,6 +319,20 @@ module.exports = function (japanese) {
 		if (typeof config === 'undefined') {
 			// default config
 			config = japanese.transcriptionConfigs['default'];
+		}
+
+		if (typeof config === 'string') {
+			config = japanese.transcriptionConfigs[config];
+
+			if (typeof config === 'undefined') {
+				throw new ReferenceError('Transcription method "' + config + '" is undefined');
+			}
+		}
+
+		if (typeof config === 'object') {
+			config = extend({}, japanese.transcriptionConfigs['default'], config);
+		} else {
+			throw new Error('You specified unknown config to japanese.transcribeNumber');
 		}
 	};
 
