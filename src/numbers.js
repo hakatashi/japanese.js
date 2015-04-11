@@ -334,6 +334,38 @@ module.exports = function (japanese) {
 		} else {
 			throw new Error('You specified unknown config to japanese.transcribeNumber');
 		}
+
+		if (typeof config.digits === 'string') {
+			config.digits = japanese.predefineedTranscriptionConfigs.digits[config.digits];
+
+			if (typeof config.digits === 'undefined') {
+				trow new ReferenceError('Transcription method of digits "' + config.digits + '" is undefined');
+			}
+		}
+
+		if (typeof config.unitNames === 'string') {
+			config.unitNames = japanese.predefineedTranscriptionConfigs.unitNames[config.unitNames];
+
+			if (typeof config.unitNames === 'undefined') {
+				throw new ReferenceError('Transcription method of unitNames "' + config.unitNames + '" is undefined');
+			}
+		}
+
+		if (typeof config.specialUnitNames === 'string') {
+			config.specialUnitNames = japanese.predefineedTranscriptionConfigs.specialUnitNames[config.specialUnitNames];
+
+			if (typeof config.specialUnitNames === 'undefined') {
+				throw new ReferenceError('Transcription method of specialUnitNames "' + config.specialUnitNames + '" is undefined');
+			}
+		}
+
+		if (typeof config.smallUnitNames === 'string') {
+			config.smallUnitNames = japanese.predefineedTranscriptionConfigs.smallUnitNames[config.smallUnitNames];
+
+			if (typeof config.smallUnitNames === 'undefined') {
+				throw new ReferenceError('Transcription method of smallUnitNames "' + config.smallUnitNames + '" is undefined');
+			}
+		}
 	};
 
 	return japanese;
