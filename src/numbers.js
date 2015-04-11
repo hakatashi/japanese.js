@@ -339,7 +339,7 @@ module.exports = function (japanese) {
 			config.digits = japanese.predefineedTranscriptionConfigs.digits[config.digits];
 
 			if (typeof config.digits === 'undefined') {
-				trow new ReferenceError('Transcription method of digits "' + config.digits + '" is undefined');
+				throw new ReferenceError('Transcription method of digits "' + config.digits + '" is undefined');
 			}
 		}
 
