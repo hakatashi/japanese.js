@@ -147,6 +147,7 @@ module.exports = function (japanese) {
 				39: '那由他',
 				47: '不可思議',
 				55: '無量大数',
+				lit: 63,
 			},
 			jinkoki2: {
 				1: '十',
@@ -169,6 +170,7 @@ module.exports = function (japanese) {
 				72: '那由他',
 				80: '不可思議',
 				88: '無量大数',
+				lit: 96,
 			},
 			jinkoki3: {
 				1: '十',
@@ -191,6 +193,7 @@ module.exports = function (japanese) {
 				60: '那由他',
 				64: '不可思議',
 				68: '無量大数',
+				lit: 72,
 			},
 			josu: {
 				1: '十',
@@ -213,6 +216,7 @@ module.exports = function (japanese) {
 				65536: '那由他',
 				131072: '不可思議',
 				262144: '無量大数',
+				lit: 524288,
 			},
 			formal: {
 				1: '拾',
@@ -235,6 +239,7 @@ module.exports = function (japanese) {
 				60: '那由他',
 				64: '不可思議',
 				68: '無量大数',
+				lit: 72,
 			},
 		},
 		specialUnitNames: {
