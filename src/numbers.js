@@ -371,6 +371,65 @@ module.exports = function (japanese) {
 				throw new ReferenceError('Transcription method of smallUnitNames "' + config.smallUnitNames + '" is undefined');
 			}
 		}
+
+		// Unify input to string
+
+		if (typeof number === 'number') {
+			// TODO
+			number = number.toString();
+		} else if (typeof number !== 'string') {
+			throw new ReferenceError('Type of `number` is unsupported');
+		}
+
+		var length = number.length;
+
+		// Main convertion starts here
+
+		// handle zero
+		if (number === '0') {
+			return config.digits[0];
+		}
+
+		var transcription = '';
+
+		if (number.slice(-1) !== '0') {
+			transcription += config.digits[number.slice(-1)]
+		}
+
+		// Get sanitized unit name keys
+		var keysOfUnitNames = Object.keys(config.unitNames).map(function (key) {
+			// convert to int
+			return parseInt(key);
+		}).filter(function (key, index, self) {
+			// unique
+			return self.indexOf(key) === index;
+		}).filter(function (key) {
+			// validate
+			return isFinite(key) && key > 0;
+		}).sort(function (a, b) {
+			// asc sort
+			return a - b;
+		});
+
+		keysOfUnitNames.forEach(function (key, index) {
+			var nextKey = keysOfUnitNames[index + 1] || Infinity;
+			// slice the digits spaned by the unit name
+			var token = number.slice(Math.max(length - nextKey, 0), Math.max(length - key, 0));
+
+			if (token.length > 0) {
+				// check if every number in the token is zero
+				if (!token.split('').every(function (digit) { return digit === '0' })) {
+					// truncateOne
+					if (config.truncateOne.indexOf(config.unitNames[key]) !== -1 && parseInt(token) === 1) {
+						transcription = config.unitNames[key] + transcription;
+					} else {
+						transcription = japanese.transcribeNumber(token, config) + config.unitNames[key] + transcription;
+					}
+				}
+			}
+		});
+
+		return transcription;
 	};
 
 	return japanese;
