@@ -21,7 +21,7 @@ describe('japanese.transcribeNumber()', function () {
 			japanese.transcribeNumber('241543903').should.be.exactly('二億四千百五十四万三千九百三');
 		});
 
-		it.skip('must perfectly convert some huge numbers into japanese until 無量大数', function () {
+		it('must perfectly convert some huge numbers into japanese until 無量大数', function () {
 			// Number.MAX_SAFE_INTEGER
 			japanese.transcribeNumber(9007199254740991).should.be.exactly([
 				'九千七兆',
