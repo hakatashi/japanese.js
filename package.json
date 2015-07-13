@@ -50,7 +50,7 @@
   },
   "scripts": {
     "test": "grunt",
-    "browser": "browserify index.js > dist/japanese.js && uglifyjs dist/japanese.js > dist/japanese.min.js"
+    "browser": "browserify browser.js > dist/japanese.js && uglifyjs dist/japanese.js > dist/japanese.min.js"
   },
   "bin": {
     "japanese": "cli.js"
