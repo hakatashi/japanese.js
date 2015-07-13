@@ -9,18 +9,21 @@ var cli = meow({
 		'  japanese <input> [options]',
 		'',
 		'Options:',
-		'  -H, --hiraganize   Hiraganize input string',
-		'  -K, --katakanize   katakanize input string',
+		'  -h, --hiraganize   hiraganize input string',
+		'  -k, --katakanize   katakanize input string',
+		'  -r, --romanize     romanize input string',
 		'',
 		'Example',
 		'  japanese ヱヴァンゲリヲン --hiraganize'
 	].join('\n')
 });
 
-if (cli.flags.H || cli.flags.hiraganize) {
+if (cli.flags.h || cli.flags.hiraganize) {
 	console.log(japanese.hiraganize(cli.input[0]));
-} else if (cli.flags.K || cli.flags.katakanize) {
+} else if (cli.flags.k || cli.flags.katakanize) {
 	console.log(japanese.katakanize(cli.input[0]));
+} else if (cli.flags.r || cli.flags.romanize) {
+	console.log(japanese.romanize(cli.input[0]));
 } else {
-	console.log(cli.input[0]);
+	console.log(cli.help);
 }
