@@ -1,0 +1,35 @@
+{
+  "name": "japanese",
+  "main": "index.js",
+  "version": "1.0.1",
+  "homepage": "https://github.com/hakatashi/japanese.js",
+  "authors": [
+    "Koki Takahashi <hakatasiloving@gmail.com>"
+  ],
+  "description": "Util collection for Japanese text processing. Hiraganize, Katakanize, and Romanize.",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "japanese",
+    "text",
+    "unicode",
+    "hiragana",
+    "katakana",
+    "romaji",
+    "romanization",
+    "unihan",
+    "kanji",
+    "hanji",
+    "CJK"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
