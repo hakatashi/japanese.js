@@ -25,6 +25,28 @@ var japanese = require('japanese/sugar');
 'ヱヴァンゲリヲン'.hiraganize();
 ```
 
+## Command
+
+Command Line Interface is also available.
+
+```
+$ npm install japanese -g
+$ japanese
+
+  Util collection for Japanese text processing. Hiraganize, Katakanize, and Romanize.
+
+  Usage:
+    japanese <input> [options]
+
+  Options:
+    -h, --hiraganize   hiraganize input string
+    -k, --katakanize   katakanize input string
+    -r, --romanize     romanize input string
+
+  Example
+    japanese ヱヴァンゲリヲン --hiraganize
+```
+
 ## API
 
 ### japanese.hiraganize(text)
@@ -188,6 +210,9 @@ are today a kind of obsolete but still only standardized romanization in the wor
 * japanese.isKanji()
 * japanese.isJoyoKanji()
 * japanese.isKinsoku() (JIS X 4051 compatibility is preferred)
+* CLI
+  - `--input <file>` and `--output <file>` option
+  - `japanese --hiraganize <string>` to work
 
 ...and any proposal or idea for enhancing japanese.js is welcomed! [Tell me](https://github.com/hakatashi/japanese.js/issues), [tell me](https://twitter.com/intent/tweet?text=Hey+@hakatashi+I+have+a+great+idea+for+enhancing+japanese.js.+That+is...), [tell me](mailto:hakatasiloving@gmail.com)!
 
