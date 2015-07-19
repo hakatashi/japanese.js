@@ -431,6 +431,15 @@ module.exports = function (japanese) {
 
 		// Main convertion starts here
 
+		var lit = '';
+		if (config.unitNames.lit && length > config.unitNames.lit) {
+			lit = number.slice(0, -config.unitNames.lit).split('').map(function (digit) {
+				return config.digits[digit];
+			}).join('');
+
+			number = number.slice(-config.unitNames.lit);
+		}
+
 		// handle zero
 		if (number === '0') {
 			return config.digits[0];
@@ -474,6 +483,9 @@ module.exports = function (japanese) {
 				}
 			}
 		});
+
+		// Rejoin lit tokens
+		transcription = lit + transcription;
 
 		return transcription;
 	};
