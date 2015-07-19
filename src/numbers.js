@@ -13,11 +13,13 @@ function getBit(buffer, position) {
 
 // Get bits of buffer from a to b
 function getBits(buffer, from, length) {
-	var ret = Big(0);
+	var ret = new Big(0);
 
 	for (var ptr = from; ptr < from + length; ptr++) {
 		ret = ret.times(2);
-		if (getBit(buffer, ptr)) ret = ret.plus(1);
+		if (getBit(buffer, ptr)) {
+			ret = ret.plus(1);
+		}
 	}
 
 	return ret;
@@ -422,10 +424,10 @@ module.exports = function (japanese) {
 					fraction = mantissa;
 					exponent = 1;
 				} else {
-					fraction = Big(2).pow(52).plus(mantissa);
+					fraction = (new Big(2)).pow(52).plus(mantissa);
 				}
 
-				number = fraction.times(Big(2).pow(exponent - 1023 - 52)).toFixed();
+				number = fraction.times((new Big(2)).pow(exponent - 1023 - 52)).toFixed();
 
 				if (sign) {
 					number = '-' + number;
@@ -462,7 +464,7 @@ module.exports = function (japanese) {
 		var transcription = '';
 
 		if (number.slice(-1) !== '0') {
-			transcription += config.digits[number.slice(-1)]
+			transcription += config.digits[number.slice(-1)];
 		}
 
 		// Get sanitized unit name keys
@@ -487,7 +489,7 @@ module.exports = function (japanese) {
 
 			if (token.length > 0) {
 				// check if every number in the token is zero
-				if (!token.split('').every(function (digit) { return digit === '0' })) {
+				if (!token.split('').every(function (digit) { return digit === '0'; })) {
 					// truncateOne
 					if (config.truncateOne.indexOf(config.unitNames[key]) !== -1 && parseInt(token) === 1) {
 						transcription = config.unitNames[key] + transcription;
