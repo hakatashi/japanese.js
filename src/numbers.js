@@ -1,6 +1,27 @@
 'use strict';
 
 var extend = require('extend');
+var Big = require('big.js');
+
+// Get nth bit from buffer
+function getBit(buffer, position) {
+	var byteIndex = Math.floor(position / 8);
+	var byte = buffer[byteIndex] || 0;
+
+	return !!(byte & (1 << (7 - position % 8)));
+}
+
+// Get bits of buffer from a to b
+function getBits(buffer, from, length) {
+	var ret = Big(0);
+
+	for (var ptr = from; ptr < from + length; ptr++) {
+		ret = ret.times(2);
+		if (getBit(buffer, ptr)) ret = ret.plus(1);
+	}
+
+	return ret;
+}
 
 module.exports = function (japanese) {
 	japanese.transcriptionConfigs = {
@@ -375,8 +396,33 @@ module.exports = function (japanese) {
 		// Unify input to string
 
 		if (typeof number === 'number') {
-			// TODO
-			number = number.toString();
+			if (Number.MIN_SAFE_INTEGER <= number && number < Number.MAX_SAFE_INTEGER) {
+				number = number.toString();
+			} else {
+				// Paste number into binary form
+				var buf = new Buffer(8);
+				buf.writeDoubleBE(number, 0);
+
+				var sign = getBit(buf, 0);
+				var exponent = getBits(buf, 1, 11);
+				var mantissa = getBits(buf, 12, 52);
+				var fraction = null;
+
+				exponent = parseInt(exponent.toString());
+
+				if (exponent === 0) {
+					fraction = mantissa;
+					exponent = 1;
+				} else {
+					fraction = Big(2).pow(52).plus(mantissa);
+				}
+
+				number = fraction.times(Big(2).pow(exponent - 1023 - 52)).toFixed();
+
+				if (sign) {
+					number = '-' + number;
+				}
+			}
 		} else if (typeof number !== 'string') {
 			throw new ReferenceError('Type of `number` is unsupported');
 		}

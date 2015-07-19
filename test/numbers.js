@@ -79,7 +79,7 @@ describe('japanese.transcribeNumber()', function () {
 			].join(''));
 		});
 
-		it.skip('should fairly transcribe numbers over 無量大数 into serialized numbers', function () {
+		it('should fairly transcribe numbers over 無量大数 into serialized numbers', function () {
 			// Number.MAX_VALUE is exactly the same as 2 ** 1024 - 2 ** 971
 			japanese.transcribeNumber(Number.MAX_VALUE).should.be.exactly([
 				'一七九七六九三',
