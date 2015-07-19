@@ -432,6 +432,7 @@ module.exports = function (japanese) {
 		// Main convertion starts here
 
 		var lit = '';
+		var restoreZero = false;
 		if (config.unitNames.lit && length > config.unitNames.lit) {
 			lit = number.slice(0, -config.unitNames.lit).split('').map(function (digit) {
 				return config.digits[digit];
@@ -439,6 +440,10 @@ module.exports = function (japanese) {
 
 			number = number.slice(-config.unitNames.lit);
 			length = number.length;
+			if (number[0] === '0') {
+				restoreZero = true;
+				number = '9' + number.slice(1);
+			}
 		}
 
 		// handle zero
@@ -486,6 +491,9 @@ module.exports = function (japanese) {
 		});
 
 		// Rejoin lit tokens
+		if (restoreZero) {
+			transcription = transcription.replace(new RegExp('^' + config.digits[9]), config.digits[0]);
+		}
 		transcription = lit + transcription;
 
 		return transcription;
