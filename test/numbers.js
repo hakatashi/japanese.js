@@ -4,6 +4,14 @@
 var should = require('should');
 var japanese = require('../');
 
+// Polyfill Number.MAX_SAFE_INTEGER and Number.MIN_SAFE_INTEGER
+if (!Number.MAX_SAFE_INTEGER) {
+	Number.MAX_SAFE_INTEGER = 9007199254740991;
+}
+if (!Number.MIN_SAFE_INTEGER) {
+	Number.MIN_SAFE_INTEGER = -9007199254740991;
+}
+
 describe('japanese.transcribeNumber()', function () {
 	describe('default options', function () {
 		it('must perfectly transcribe some numbers and strings into japanese', function () {

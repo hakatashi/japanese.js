@@ -23,6 +23,14 @@ function getBits(buffer, from, length) {
 	return ret;
 }
 
+// Polyfill Number.MAX_SAFE_INTEGER and Number.MIN_SAFE_INTEGER
+if (!Number.MAX_SAFE_INTEGER) {
+	Number.MAX_SAFE_INTEGER = 9007199254740991;
+}
+if (!Number.MIN_SAFE_INTEGER) {
+	Number.MIN_SAFE_INTEGER = -9007199254740991;
+}
+
 module.exports = function (japanese) {
 	japanese.transcriptionConfigs = {
 		'default': {
