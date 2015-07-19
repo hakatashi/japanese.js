@@ -438,6 +438,7 @@ module.exports = function (japanese) {
 			}).join('');
 
 			number = number.slice(-config.unitNames.lit);
+			length = number.length;
 		}
 
 		// handle zero
