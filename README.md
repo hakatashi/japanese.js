@@ -129,7 +129,7 @@ Available parameters are following.
 | つ   | tu, tsu             |
 | ふ   | hu, fu              |
 | じ   | zi, ji              |
-| ぢ   | di, zi, ji          |
+| ぢ   | di, zi, ji, dzi, dji|
 | づ   | du, zu, dsu, dzu    |
 | ああ | aa, ah, â, ā, a     |
 | いい | ii, ih, î, ī, i     |

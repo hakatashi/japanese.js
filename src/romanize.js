@@ -408,6 +408,30 @@ module.exports = function (japanese) {
 			});
 		}
 
+		if (config['ぢ'] === 'dji') {
+			extend(table, {
+				'ぢ': 'dji',
+				'ぢゃ': 'dja',
+				'ぢゅ': 'dju',
+				'ぢぇ': 'dje',
+				'ぢょ': 'djo',
+				'でぃ': 'di',
+				'でゅ': 'dyu',
+			});
+		}
+
+		if (config['ぢ'] === 'dzi') {
+			extend(table, {
+				'ぢ': 'dzi',
+				'ぢゃ': 'dzya',
+				'ぢゅ': 'dzyu',
+				'ぢぇ': 'dzye',
+				'ぢょ': 'dzyo',
+				'でぃ': 'di',
+				'でゅ': 'dyu',
+			});
+		}
+
 		if (config['づ'] === 'zu') {
 			extend(table, {
 				'づ': 'zu',

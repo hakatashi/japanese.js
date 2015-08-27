@@ -420,6 +420,16 @@ describe('japanese.romanize()', function () {
 				'ぢ': 'ji'
 			}).should.be.exactly('arujajīranohijōyōjettonosōjū');
 			japanese.romanize('デュラララのエンディング', {'ぢ': 'ji'}).should.be.exactly('dyurararanoendingu');
+
+			japanese.romanize('アルヂャヂーラのひぢょうようヂェットのそうぢゅう', {
+				'ぢ': 'dji'
+			}).should.be.exactly('arudjadjīranohidjōyōdjettonosōdjū');
+			japanese.romanize('デュラララのエンディング', {'ぢ': 'dji'}).should.be.exactly('dyurararanoendingu');
+
+			japanese.romanize('アルヂャヂーラのひぢょうようヂェットのそうぢゅう', {
+				'ぢ': 'dzi'
+			}).should.be.exactly('arudzyadzīranohidzyōyōdzyettonosōdzyū');
+			japanese.romanize('デュラララのエンディング', {'ぢ': 'dzi'}).should.be.exactly('dyurararanoendingu');
 		});
 
 		it('must be properly customizable with づ parameter', function () {
