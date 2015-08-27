@@ -417,7 +417,9 @@ module.exports = function (japanese) {
 				'づぉ': 'zuo',
 				'どぅ': 'du',
 			});
-		} else if (config['づ'] === 'dsu') {
+		}
+
+		if (config['づ'] === 'dsu') {
 			extend(table, {
 				'づ': 'dsu',
 				'づぁ': 'dsua',
@@ -426,7 +428,9 @@ module.exports = function (japanese) {
 				'づぉ': 'dsuo',
 				'どぅ': 'du',
 			});
-		} else if (config['づ'] === 'dzu') {
+		}
+
+		if (config['づ'] === 'dzu') {
 			extend(table, {
 				'づ': 'dzu',
 				'づぁ': 'dzua',
