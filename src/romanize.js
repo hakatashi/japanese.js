@@ -417,6 +417,24 @@ module.exports = function (japanese) {
 				'づぉ': 'zuo',
 				'どぅ': 'du',
 			});
+		} else if (config['づ'] === 'dsu') {
+			extend(table, {
+				'づ': 'dsu',
+				'づぁ': 'dsua',
+				'づぃ': 'dsui',
+				'づぇ': 'dsue',
+				'づぉ': 'dsuo',
+				'どぅ': 'du',
+			});
+		} else if (config['づ'] === 'dzu') {
+			extend(table, {
+				'づ': 'dzu',
+				'づぁ': 'dzua',
+				'づぃ': 'dzui',
+				'づぇ': 'dzue',
+				'づぉ': 'dzuo',
+				'どぅ': 'du',
+			});
 		}
 
 		if (config['ゐ'] === 'i') {

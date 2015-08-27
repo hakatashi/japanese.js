@@ -430,6 +430,14 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('いなづま', {'づ': 'zu'}).should.be.exactly('inazuma');
 			japanese.romanize('デラ・モチマッヅィ', {'づ': 'zu'}).should.be.exactly('dera-mochimazzui');
 			japanese.romanize('しきえいきヤマザナドゥ', {'づ': 'zu'}).should.be.exactly('shikieikiyamazanadu');
+
+			japanese.romanize('いなづま', {'づ': 'dsu'}).should.be.exactly('inadsuma');
+			japanese.romanize('デラ・モチマッヅィ', {'づ': 'dsu'}).should.be.exactly('dera-mochimaddsui');
+			japanese.romanize('しきえいきヤマザナドゥ', {'づ': 'dsu'}).should.be.exactly('shikieikiyamazanadu');
+
+			japanese.romanize('いなづま', {'づ': 'dzu'}).should.be.exactly('inadzuma');
+			japanese.romanize('デラ・モチマッヅィ', {'づ': 'dzu'}).should.be.exactly('dera-mochimaddzui');
+			japanese.romanize('しきえいきヤマザナドゥ', {'づ': 'dzu'}).should.be.exactly('shikieikiyamazanadu');
 		});
 
 		it('must be properly customizable with ああ parameter', function () {

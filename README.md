@@ -130,7 +130,7 @@ Available parameters are following.
 | ふ   | hu, fu              |
 | じ   | zi, ji              |
 | ぢ   | di, zi, ji          |
-| づ   | du, zu              |
+| づ   | du, zu, dsu, dzu    |
 | ああ | aa, ah, â, ā, a     |
 | いい | ii, ih, î, ī, i     |
 | うう | uu, uh, û, ū, u     |
