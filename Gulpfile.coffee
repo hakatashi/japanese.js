@@ -15,7 +15,7 @@ gulp.task 'build', ->
 	browserify 'browser.js'
 	.transform babelify
 	.bundle()
-	.pipe sourceStream 'bundle.js'
+	.pipe sourceStream 'japanese.js'
 	.pipe gulp.dest 'build'
 
 gulp.task 'test-node', ->

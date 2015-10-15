@@ -39,26 +39,17 @@
     "browserify": "^11.2.0",
     "coffee-script": "^1.10.0",
     "coveralls": "^2.11.2",
-    "grunt-cli": "^0.1.13",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-nodeunit": "^0.4.1",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-mocha-cli": "^1.11.0",
     "gulp": "^3.9.0",
     "gulp-jshint": "^1.11.2",
     "gulp-mocha": "^2.1.3",
     "gulp-mocha-phantomjs": "^0.10.1",
     "istanbul": "^0.3.6",
-    "jshint-stylish": "^1.0.0",
-    "load-grunt-tasks": "^1.0.0",
     "mocha": "^2.1.0",
     "should": "^5.0.0",
-    "time-grunt": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
-    "test": "grunt",
-    "browser": "browserify browser.js > dist/japanese.js && uglifyjs dist/japanese.js > dist/japanese.min.js"
+    "test": "gulp"
   },
   "bin": {
     "japanese": "cli.js"
