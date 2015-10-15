@@ -1,7 +1,9 @@
+/* jslint browser: true */
+
 (function() {
   var global;
 
-  if (!typeof module !== 'undefined') {
+  if (typeof module === 'undefined') {
     global = window;
   }
 
