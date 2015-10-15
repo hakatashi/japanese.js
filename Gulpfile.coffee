@@ -9,7 +9,8 @@ sourceStream = require 'vinyl-source-stream'
 gulp.task 'test-static', ->
 	gulp.src ['*.js', 'src/*.js', 'test/*.js']
 	.pipe jshint()
-	.pipe jshint.reporter 'default'
+	.pipe jshint.reporter 'jshint-stylish'
+	.pipe jshint.reporter 'fail'
 
 gulp.task 'build', ->
 	browserify 'browser.js'
@@ -18,8 +19,10 @@ gulp.task 'build', ->
 	.pipe sourceStream 'japanese.js'
 	.pipe gulp.dest 'build'
 
-gulp.task 'test-node', ->
+gulp.task 'test-node', ['build'], ->
 	gulp.src 'test/*.js', read: false
 	.pipe mocha reporter: 'spec'
 
-gulp.task 'default', ['test-static', 'build', 'test-node']
+gulp.task 'test', ['test-static', 'test-node']
+
+gulp.task 'default', ['test']
