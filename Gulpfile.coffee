@@ -2,7 +2,7 @@ gulp = require 'gulp'
 browserify = require 'browserify'
 babelify = require 'babelify'
 jshint = require 'gulp-jshint'
-mocha = require 'gulp-mocha'
+mocha = require 'gulp-spawn-mocha'
 uglify = require 'gulp-uglify'
 rename = require 'gulp-rename'
 header = require 'gulp-header'
@@ -41,7 +41,6 @@ gulp.task 'build-test', ->
 		transform: [babelify]
 	.bundle (error) -> console.error(error) if error
 	.pipe sourceStream 'browser.js'
-	.pipe buffer()
 	.pipe gulp.dest 'test'
 
 gulp.task 'test-node', ->
