@@ -7,6 +7,7 @@ uglify = require 'gulp-uglify'
 rename = require 'gulp-rename'
 header = require 'gulp-header'
 mochaPhantom = require 'gulp-mocha-phantomjs'
+babel = require 'gulp-babel'
 sourceStream = require 'vinyl-source-stream'
 
 banner = """
@@ -20,16 +21,23 @@ banner = """
 """
 
 gulp.task 'test-static', ->
-	gulp.src ['*.js', 'src/*.js', 'test/*.js', '!test/browser.js']
+	gulp.src ['*.js', 'src/*.es6', 'test/*.es6', '!test/browser.js']
 	.pipe jshint()
 	.pipe jshint.reporter 'jshint-stylish'
 	.pipe jshint.reporter 'fail'
 
-gulp.task 'build', ->
+gulp.task 'build-node', ->
+	gulp.src ['src/*.es6', 'test/*.es6'], base: '.'
+	.pipe babel()
+	.pipe rename (file) -> file.extname = '.js'
+	.pipe gulp.dest '.'
+
+gulp.task 'build-browser', ->
 	browserify
 		entries: 'browser.js'
 		debug: true
 		transform: [babelify]
+		extensions: ['.es6', '.js']
 	.bundle (error) -> console.error(error) if error
 	.pipe sourceStream 'japanese.js'
 	.pipe gulp.dest 'build'
@@ -39,11 +47,12 @@ gulp.task 'build-test', ->
 		entries: 'test/index.js'
 		debug: true
 		transform: [babelify]
+		extensions: ['.es6', '.js']
 	.bundle (error) -> console.error(error) if error
 	.pipe sourceStream 'browser.js'
 	.pipe gulp.dest 'test'
 
-gulp.task 'test-node', ->
+gulp.task 'test-node', ['build-node'], ->
 	gulp.src 'test/index.js', read: false
 	.pipe mocha reporter: 'spec'
 
@@ -51,7 +60,7 @@ gulp.task 'test-browser', ['build-test'], ->
 	gulp.src 'test/index.html', read: false
 	.pipe mochaPhantom reporter: 'spec'
 
-gulp.task 'dist', ['build'], ->
+gulp.task 'dist', ['build-node', 'build-browser'], ->
 	gulp.src 'build/japanese.js'
 	.pipe header banner, pkg: require './package.json'
 	.pipe gulp.dest 'dist'

@@ -1,8 +1,8 @@
 /* global describe, xdescribe, it */
 'use strict';
 
-var should = require('should');
-var japanese = require('../');
+const should = require('should');
+const japanese = require('../');
 
 // Compatify Number.MAX_SAFE_INTEGER and Number.MIN_SAFE_INTEGER
 const MAX_SAFE_INTEGER = 9007199254740991;

@@ -40,6 +40,7 @@
     "coffee-script": "^1.10.0",
     "coveralls": "^2.11.2",
     "gulp": "^3.9.0",
+    "gulp-babel": "^5.3.0",
     "gulp-header": "^1.7.1",
     "gulp-jshint": "^1.11.2",
     "gulp-mocha-phantomjs": "^0.10.1",

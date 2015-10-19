@@ -1,3 +1,3 @@
-require('./kana.js');
-require('./romanize.js');
-require('./numbers.js');
+require('./kana');
+require('./romanize');
+require('./numbers');

@@ -2,8 +2,8 @@
 
 var japanese = {};
 
-require('./src/kana.js')(japanese);
-require('./src/romanize.js')(japanese);
-require('./src/numbers.js')(japanese);
+require('./src/kana')(japanese);
+require('./src/romanize')(japanese);
+require('./src/numbers')(japanese);
 
 module.exports = japanese;
