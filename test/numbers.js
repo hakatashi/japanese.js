@@ -4,13 +4,9 @@
 var should = require('should');
 var japanese = require('../');
 
-// Polyfill Number.MAX_SAFE_INTEGER and Number.MIN_SAFE_INTEGER
-if (!Number.MAX_SAFE_INTEGER) {
-	Number.MAX_SAFE_INTEGER = 9007199254740991;
-}
-if (!Number.MIN_SAFE_INTEGER) {
-	Number.MIN_SAFE_INTEGER = -9007199254740991;
-}
+// Compatify Number.MAX_SAFE_INTEGER and Number.MIN_SAFE_INTEGER
+const MAX_SAFE_INTEGER = 9007199254740991;
+const MIN_SAFE_INTEGER = -9007199254740991;
 
 describe('japanese.transcribeNumber()', function () {
 	describe('default options', function () {
@@ -31,7 +27,7 @@ describe('japanese.transcribeNumber()', function () {
 
 		it('must perfectly convert some huge numbers into japanese until 無量大数', function () {
 			// Number.MAX_SAFE_INTEGER
-			japanese.transcribeNumber(9007199254740991).should.be.exactly([
+			japanese.transcribeNumber(MAX_SAFE_INTEGER).should.be.exactly([
 				'九千七兆',
 				'千九百九十二億',
 				'五千四百七十四万',
@@ -166,7 +162,7 @@ describe('japanese.transcribeNumber()', function () {
 
 		it.skip('must perfectly transcribe very minor numbers into string', function () {
 			// Number.MIN_SAFE_INTEGER
-			japanese.transcribeNumber(-9007199254740991).should.be.exactly([
+			japanese.transcribeNumber(MIN_SAFE_INTEGER).should.be.exactly([
 				'マイナス',
 				'九千七兆',
 				'千九百九十二億',
