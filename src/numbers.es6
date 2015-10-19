@@ -25,13 +25,9 @@ function getBits(buffer, from, length) {
 	return ret;
 }
 
-// Polyfill Number.MAX_SAFE_INTEGER and Number.MIN_SAFE_INTEGER
-if (!Number.MAX_SAFE_INTEGER) {
-	Number.MAX_SAFE_INTEGER = 9007199254740991;
-}
-if (!Number.MIN_SAFE_INTEGER) {
-	Number.MIN_SAFE_INTEGER = -9007199254740991;
-}
+// Compatify Number.MAX_SAFE_INTEGER and Number.MIN_SAFE_INTEGER
+const MAX_SAFE_INTEGER = 9007199254740991;
+const MIN_SAFE_INTEGER = -9007199254740991;
 
 module.exports = function (japanese) {
 	japanese.transcriptionConfigs = {
@@ -406,7 +402,7 @@ module.exports = function (japanese) {
 		// Unify input to string
 
 		if (typeof number === 'number') {
-			if (Number.MIN_SAFE_INTEGER <= number && number < Number.MAX_SAFE_INTEGER) {
+			if (MIN_SAFE_INTEGER <= number && number < MAX_SAFE_INTEGER) {
 				number = number.toString();
 			} else {
 				// Paste number into binary form
