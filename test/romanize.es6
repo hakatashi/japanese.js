@@ -4,16 +4,16 @@
 var should = require('should');
 var japanese = require('../');
 
-describe('japanese.romanize()', function () {
-	it('should throw error when suspicious config was delivered', function () {
+describe('japanese.romanize()', () => {
+	it('should throw error when suspicious config was delivered', () => {
 		japanese.romanize.bind(japanese, 'えらー', 'undefined config').should.throw(ReferenceError);
 		japanese.romanize.bind(japanese, 'えらー', false).should.throw(Error);
 		japanese.romanize.bind(japanese, 'えらー', 114514).should.throw(Error);
-		japanese.romanize.bind(japanese, 'えらー', function(){}).should.throw(Error);
+		japanese.romanize.bind(japanese, 'えらー', ()=>{}).should.throw(Error);
 	});
 
-	describe('Wikipedia-style mode', function () {
-		it('must perfectly convert existing Wikipedia articles', function () {
+	describe('Wikipedia-style mode', () => {
+		it('must perfectly convert existing Wikipedia articles', () => {
 			japanese.romanize('れんあい').should.be.exactly('ren\'ai');
 
 			japanese.romanize('ほっかいどう').should.be.exactly('hokkaidō');
@@ -65,7 +65,7 @@ describe('japanese.romanize()', function () {
 		});
 
 		// http://en.wikipedia.org/wiki/List_of_Strawberry_Panic!_characters
-		it('must kind-hearted for fans of Strawberry Panic!', function () {
+		it('must kind-hearted for fans of Strawberry Panic!', () => {
 			japanese.romanize('あおい なぎさ').should.be.exactly('aoi nagisa');
 			japanese.romanize('はなぞの しずま').should.be.exactly('hanazono shizuma');
 			japanese.romanize('すずみ たまお').should.be.exactly('suzumi tamao');
@@ -87,7 +87,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('びゃくだん かごめ').should.be.exactly('byakudan kagome');
 		});
 
-		it('should be able to convert some strange japanese strings neatly', function () {
+		it('should be able to convert some strange japanese strings neatly', () => {
 			japanese.romanize('アッーウッウッイネイネ').should.be.exactly('a\'-u\'u\'ineine');
 			japanese.romanize('ウッウッーウマウマ').should.be.exactly('u\'u\'-umauma');
 			japanese.romanize('ムッムッホァイ').should.be.exactly('mummuhhoai');
@@ -104,9 +104,9 @@ describe('japanese.romanize()', function () {
 		});
 	});
 
-	describe('Traditional Hepburn mode', function () {
+	describe('Traditional Hepburn mode', () => {
 		// http://en.wikipedia.org/wiki/Hepburn_romanization
-		it('must perfectly convert Wikipedia\'s conversion examples', function () {
+		it('must perfectly convert Wikipedia\'s conversion examples', () => {
 			japanese.romanize('おばあさん', 'traditional hepburn').should.be.exactly('obaasan');
 			japanese.romanize('おにいさん', 'traditional hepburn').should.be.exactly('oniisan');
 			japanese.romanize('おじいさん', 'traditional hepburn').should.be.exactly('ojiisan');
@@ -157,9 +157,9 @@ describe('japanese.romanize()', function () {
 		});
 	});
 
-	describe('Modified Hepburn mode', function () {
+	describe('Modified Hepburn mode', () => {
 		// http://en.wikipedia.org/wiki/Hepburn_romanization
-		it('must perfectly convert Wikipedia\'s conversion examples', function () {
+		it('must perfectly convert Wikipedia\'s conversion examples', () => {
 			japanese.romanize('おばあさん', 'modified hepburn').should.be.exactly('obāsan');
 			japanese.romanize('おにいさん', 'modified hepburn').should.be.exactly('oniisan');
 			japanese.romanize('おじいさん', 'modified hepburn').should.be.exactly('ojiisan');
@@ -210,8 +210,8 @@ describe('japanese.romanize()', function () {
 		});
 	});
 
-	describe('Kunrei-shiki mode', function () {
-		it('must perfectly convert ISO 3602 provided examples', function () {
+	describe('Kunrei-shiki mode', () => {
+		it('must perfectly convert ISO 3602 provided examples', () => {
 			japanese.romanize('かのう', 'kunrei').should.be.exactly('kanô');
 			japanese.romanize('かんおう', 'kunrei').should.be.exactly('kan\'ô');
 			japanese.romanize('きにゅう', 'kunrei').should.be.exactly('kinyû');
@@ -238,7 +238,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('はっぴょう', 'kunrei').should.be.exactly('happyô');
 		});
 
-		it('must convert sensitive... ISO 3602 Strict related strings correctly', function () {
+		it('must convert sensitive... ISO 3602 Strict related strings correctly', () => {
 			japanese.romanize('はなぢ', 'kunrei').should.be.exactly('hanazi');
 			japanese.romanize('ちぢみ', 'kunrei').should.be.exactly('tizimi');
 			japanese.romanize('あいづ', 'kunrei').should.be.exactly('aizu');
@@ -252,8 +252,8 @@ describe('japanese.romanize()', function () {
 		});
 	});
 
-	describe('Nihon-shiki mode', function () {
-		it('must perfectly convert ISO 3602 provided examples', function () {
+	describe('Nihon-shiki mode', () => {
+		it('must perfectly convert ISO 3602 provided examples', () => {
 			japanese.romanize('かのう', 'nihon').should.be.exactly('kanō');
 			japanese.romanize('かんおう', 'nihon').should.be.exactly('kan\'ō');
 			japanese.romanize('きにゅう', 'nihon').should.be.exactly('kinyū');
@@ -280,7 +280,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('はっぴょう', 'nihon').should.be.exactly('happyō');
 		});
 
-		it('must convert sensitive... ISO 3602 Strict related strings correctly', function () {
+		it('must convert sensitive... ISO 3602 Strict related strings correctly', () => {
 			japanese.romanize('はなぢ', 'nihon').should.be.exactly('hanadi');
 			japanese.romanize('ちぢみ', 'nihon').should.be.exactly('tidimi');
 			japanese.romanize('あいづ', 'nihon').should.be.exactly('aidu');
@@ -294,8 +294,8 @@ describe('japanese.romanize()', function () {
 		});
 	});
 
-	describe('Custom mode', function () {
-		it('must perfectly convert with some strange configs', function () {
+	describe('Custom mode', () => {
+		it('must perfectly convert with some strange configs', () => {
 			var config = {
 				'ああ': 'ah',
 				'いい': 'ii',
@@ -323,7 +323,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('べにすにしす', config).should.be.exactly('benisunishisu');
 		});
 
-		it('must perfectly convert with some altered configs', function () {
+		it('must perfectly convert with some altered configs', () => {
 			var config = {
 				'ああ': 'aa',
 				'いい': 'ii',
@@ -351,7 +351,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('べにすにしす', config).should.be.exactly('benisunishisu');
 		});
 
-		it('must be properly customizable with し parameter', function () {
+		it('must be properly customizable with し parameter', () => {
 			japanese.romanize('しゅうごうしゃしん', {'し': 'si'}).should.be.exactly('syūgōsyasin');
 			japanese.romanize('シェークスピアのしょうせつ', {'し': 'si'}).should.be.exactly('syēkusupianosyōsetsu');
 
@@ -359,7 +359,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('シェークスピアのしょうせつ', {'し': 'shi'}).should.be.exactly('shēkusupianoshōsetsu');
 		});
 
-		it('must be properly customizable with ち parameter', function () {
+		it('must be properly customizable with ち parameter', () => {
 			japanese.romanize('ちっちゃいそんちょう', {'ち': 'ti'}).should.be.exactly('titchaisontyō');
 			japanese.romanize('ちゃいろいチェーン', {'ち': 'ti'}).should.be.exactly('tyairoityēn');
 			japanese.romanize('テュールのティータイム', {'ち': 'ti'}).should.be.exactly('teūrunoteītaimu');
@@ -369,7 +369,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('テュールのティータイム', {'ち': 'chi'}).should.be.exactly('tyūrunotītaimu');
 		});
 
-		it('must be properly customizable with つ parameter', function () {
+		it('must be properly customizable with つ parameter', () => {
 			japanese.romanize('バイツァダスト', {'つ': 'tu'}).should.be.exactly('baituadasuto');
 			japanese.romanize('カンツォーネ', {'つ': 'tu'}).should.be.exactly('kantuōne');
 			japanese.romanize('トゥーツ・シールマンス', {'つ': 'tu'}).should.be.exactly('toūtu-shīrumansu');
@@ -385,7 +385,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('ツュループィンシク', {'つ': 'tsu'}).should.be.exactly('tsyurūpuinshiku');
 		});
 
-		it('must be properly customizable with ふ parameter', function () {
+		it('must be properly customizable with ふ parameter', () => {
 			japanese.romanize('フィファ（フェデレーション・インターナショナル・ド・フットボール・アソシエーション）のフォーメーション', {
 				'ふ': 'hu'
 			}).should.be.exactly('huihua(huederēshon-intānashonaru-do-huttobōru-asoshiēshon)nohuōmēshon');
@@ -395,7 +395,7 @@ describe('japanese.romanize()', function () {
 			}).should.be.exactly('fifa(federēshon-intānashonaru-do-futtobōru-asoshiēshon)nofōmēshon');
 		});
 
-		it('must be properly customizable with じ parameter', function () {
+		it('must be properly customizable with じ parameter', () => {
 			japanese.romanize('アルジャジーラのひじょうようジェットのそうじゅう', {
 				'じ': 'zi'
 			}).should.be.exactly('aruzyazīranohizyōyōzyettonosōzyū');
@@ -405,7 +405,7 @@ describe('japanese.romanize()', function () {
 			}).should.be.exactly('arujajīranohijōyōjettonosōjū');
 		});
 
-		it('must be properly customizable with ぢ parameter', function () {
+		it('must be properly customizable with ぢ parameter', () => {
 			japanese.romanize('アルヂャヂーラのひぢょうようヂェットのそうぢゅう', {
 				'ぢ': 'di'
 			}).should.be.exactly('arudyadīranohidyōyōdyettonosōdyū');
@@ -432,7 +432,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('デュラララのエンディング', {'ぢ': 'dzi'}).should.be.exactly('dyurararanoendingu');
 		});
 
-		it('must be properly customizable with づ parameter', function () {
+		it('must be properly customizable with づ parameter', () => {
 			japanese.romanize('いなづま', {'づ': 'du'}).should.be.exactly('inaduma');
 			japanese.romanize('デラ・モチマッヅィ', {'づ': 'du'}).should.be.exactly('dera-mochimaddui');
 			japanese.romanize('しきえいきヤマザナドゥ', {'づ': 'du'}).should.be.exactly('shikieikiyamazanadou');
@@ -450,7 +450,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('しきえいきヤマザナドゥ', {'づ': 'dzu'}).should.be.exactly('shikieikiyamazanadu');
 		});
 
-		it('must be properly customizable with ああ parameter', function () {
+		it('must be properly customizable with ああ parameter', () => {
 			japanese.romanize('まあ、そうなるな', {'ああ': 'aa'}).should.be.exactly('maa,sōnaruna');
 			japanese.romanize('おかあさんといっしょ', {'ああ': 'aa'}).should.be.exactly('okaasantoissho');
 
@@ -467,7 +467,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('おかあさんといっしょ', {'ああ': 'a'}).should.be.exactly('okasantoissho');
 		});
 
-		it('must be properly customizable with いい parameter', function () {
+		it('must be properly customizable with いい parameter', () => {
 			japanese.romanize('くもいいちりん', {'いい': 'ii'}).should.be.exactly('kumoiichirin');
 			japanese.romanize('ほしいみき', {'いい': 'ii'}).should.be.exactly('hoshiimiki');
 
@@ -484,7 +484,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('ほしいみき', {'いい': 'i'}).should.be.exactly('hoshimiki');
 		});
 
-		it('must be properly customizable with うう parameter', function () {
+		it('must be properly customizable with うう parameter', () => {
 			japanese.romanize('すずみやハルヒのゆううつ', {'うう': 'uu'}).should.be.exactly('suzumiyaharuhinoyuuutsu');
 			japanese.romanize('やじゅうせんぱい', {'うう': 'uu'}).should.be.exactly('yajuusenpai');
 
@@ -502,7 +502,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('やじゅうせんぱい', {'うう': 'u'}).should.be.exactly('yajusenpai');
 		});
 
-		it('must be properly customizable with ええ parameter', function () {
+		it('must be properly customizable with ええ parameter', () => {
 			japanese.romanize('はるうええりい', {'ええ': 'ee'}).should.be.exactly('harūeerii');
 			japanese.romanize('ナナシノゲエム', {'ええ': 'ee'}).should.be.exactly('nanashinogeemu');
 
@@ -519,7 +519,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('ナナシノゲエム', {'ええ': 'e'}).should.be.exactly('nanashinogemu');
 		});
 
-		it('must be properly customizable with おお parameter', function () {
+		it('must be properly customizable with おお parameter', () => {
 			japanese.romanize('おおつぼゆか', {'おお': 'oo'}).should.be.exactly('ootsuboyuka');
 			japanese.romanize('ソードアートオンライン', {'おお': 'oo'}).should.be.exactly('sōdoātoonrain');
 
@@ -536,7 +536,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('ソードアートオンライン', {'おお': 'o'}).should.be.exactly('sōdoātonrain');
 		});
 
-		it('must be properly customizable with あー parameter', function () {
+		it('must be properly customizable with あー parameter', () => {
 			japanese.romanize('トレーディングカードゲーム', {'あー': 'a-'}).should.be.exactly('tore-dinguka-doge-mu');
 			japanese.romanize('トレーディングカードゲーム', {'あー': 'aa'}).should.be.exactly('toreedingukaadogeemu');
 			japanese.romanize('トレーディングカードゲーム', {'あー': 'ah'}).should.be.exactly('torehdingukahdogehmu');
@@ -545,7 +545,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('トレーディングカードゲーム', {'あー': 'a'}).should.be.exactly('toredingukadogemu');
 		});
 
-		it('must be properly customizable with あー parameter', function () {
+		it('must be properly customizable with あー parameter', () => {
 			japanese.romanize('えいせいへい', {'えい': 'ei'}).should.be.exactly('eiseihei');
 			japanese.romanize('えいせいへい', {'えい': 'ee'}).should.be.exactly('eeseehee');
 			japanese.romanize('えいせいへい', {'えい': 'eh'}).should.be.exactly('ehsehheh');
@@ -554,7 +554,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('えいせいへい', {'えい': 'e'}).should.be.exactly('esehe');
 		});
 
-		it('must be properly customizable with おう parameter', function () {
+		it('must be properly customizable with おう parameter', () => {
 			japanese.romanize('とうほうえいやしょう', {'おう': 'ou'}).should.be.exactly('touhoueiyashou');
 			japanese.romanize('とうほうえいやしょう', {'おう': 'oo'}).should.be.exactly('toohooeiyashoo');
 			japanese.romanize('とうほうえいやしょう', {'おう': 'oh'}).should.be.exactly('tohhoheiyashoh');
@@ -563,7 +563,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('とうほうえいやしょう', {'おう': 'o'}).should.be.exactly('tohoeiyasho');
 		});
 
-		it('must be properly customizable with んあ parameter', function () {
+		it('must be properly customizable with んあ parameter', () => {
 			japanese.romanize('きんいろモザイク', {'んあ': 'na'}).should.be.exactly('kiniromozaiku');
 			japanese.romanize('うちゅうせんかんヤマト', {'んあ': 'na'}).should.be.exactly('uchūsenkanyamato');
 			japanese.romanize('きんいろモザイク', {'んあ': 'n\'a'}).should.be.exactly('kin\'iromozaiku');
@@ -572,7 +572,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('うちゅうせんかんヤマト', {'んあ': 'n-a'}).should.be.exactly('uchūsenkan-yamato');
 		});
 
-		it('must be properly customizable with んば parameter', function () {
+		it('must be properly customizable with んば parameter', () => {
 			japanese.romanize('のんのんびよりなんみん', {'んば': 'nba'}).should.be.exactly('nonnonbiyorinanmin');
 			japanese.romanize('こころぴょんぴょん', {'んば': 'nba'}).should.be.exactly('kokoropyonpyon');
 
@@ -580,7 +580,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('こころぴょんぴょん', {'んば': 'mba'}).should.be.exactly('kokoropyompyon');
 		});
 
-		it('must be properly customizable with っち parameter', function () {
+		it('must be properly customizable with っち parameter', () => {
 			japanese.romanize('ひだまりスケッチ', {'っち': 'tti'}).should.be.exactly('hidamarisuketti');
 			japanese.romanize('まっちょしぃ', {'っち': 'tti'}).should.be.exactly('mattyoshii');
 
@@ -591,7 +591,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('まっちょしぃ', {'っち': 'cchi'}).should.be.exactly('macchoshii');
 		});
 
-		it('must be properly customizable with ゐ parameter', function () {
+		it('must be properly customizable with ゐ parameter', () => {
 			japanese.romanize('いなばてゐ', {'ゐ': 'i'}).should.be.exactly('inabatei');
 			japanese.romanize('ヱヴァンゲリヲン', {'ゐ': 'i'}).should.be.exactly('evangerion');
 
@@ -599,7 +599,7 @@ describe('japanese.romanize()', function () {
 			japanese.romanize('ヱヴァンゲリヲン', {'ゐ': 'wi'}).should.be.exactly('wevangerion');
 		});
 
-		it('must be properly customizable with を parameter', function () {
+		it('must be properly customizable with を parameter', () => {
 			japanese.romanize('パパのいうことをききなさい!', {'を': 'o'}).should.be.exactly('papanoiukotookikinasai');
 			japanese.romanize('をきゅうくうぼ', {'を': 'o'}).should.be.exactly('okyūkūbo');
 

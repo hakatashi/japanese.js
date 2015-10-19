@@ -8,9 +8,9 @@ const japanese = require('../');
 const MAX_SAFE_INTEGER = 9007199254740991;
 const MIN_SAFE_INTEGER = -9007199254740991;
 
-describe('japanese.transcribeNumber()', function () {
-	describe('default options', function () {
-		it('must perfectly transcribe some numbers and strings into japanese', function () {
+describe('japanese.transcribeNumber()', () => {
+	describe('default options', () => {
+		it('must perfectly transcribe some numbers and strings into japanese', () => {
 			japanese.transcribeNumber(0).should.be.exactly('〇');
 			japanese.transcribeNumber(4).should.be.exactly('四');
 			japanese.transcribeNumber(13).should.be.exactly('十三');
@@ -25,7 +25,7 @@ describe('japanese.transcribeNumber()', function () {
 			japanese.transcribeNumber('241543903').should.be.exactly('二億四千百五十四万三千九百三');
 		});
 
-		it('must perfectly convert some huge numbers into japanese until 無量大数', function () {
+		it('must perfectly convert some huge numbers into japanese until 無量大数', () => {
 			// Number.MAX_SAFE_INTEGER
 			japanese.transcribeNumber(MAX_SAFE_INTEGER).should.be.exactly([
 				'九千七兆',
@@ -83,7 +83,7 @@ describe('japanese.transcribeNumber()', function () {
 			].join(''));
 		});
 
-		it('should fairly transcribe numbers over 無量大数 into serialized numbers', function () {
+		it('should fairly transcribe numbers over 無量大数 into serialized numbers', () => {
 			// Number.MAX_VALUE is exactly the same as 2 ** 1024 - 2 ** 971
 			japanese.transcribeNumber(Number.MAX_VALUE).should.be.exactly([
 				'一七九七六九三',
@@ -151,7 +151,7 @@ describe('japanese.transcribeNumber()', function () {
 			].join(''));
 		});
 
-		it.skip('must perfectly transcribe negative numbers with facing "マイナス" string', function () {
+		it.skip('must perfectly transcribe negative numbers with facing "マイナス" string', () => {
 			japanese.transcribeNumber(-0).should.be.exactly('マイナス〇');
 			japanese.transcribeNumber(-1).should.be.exactly('マイナス一');
 			japanese.transcribeNumber(-893).should.be.exactly('マイナス八百九十三');
@@ -160,7 +160,7 @@ describe('japanese.transcribeNumber()', function () {
 			japanese.transcribeNumber('-114514').should.be.exactly('マイナス十一万四千五百十四');
 		});
 
-		it.skip('must perfectly transcribe very minor numbers into string', function () {
+		it.skip('must perfectly transcribe very minor numbers into string', () => {
 			// Number.MIN_SAFE_INTEGER
 			japanese.transcribeNumber(MIN_SAFE_INTEGER).should.be.exactly([
 				'マイナス',
@@ -240,7 +240,7 @@ describe('japanese.transcribeNumber()', function () {
 			].join(''));
 		});
 
-		it.skip('must perfectly transcribe decimal fractions with fullwidth dot sign', function () {
+		it.skip('must perfectly transcribe decimal fractions with fullwidth dot sign', () => {
 			japanese.transcribeNumber(3.14).should.be.exactly('三・一四');
 			japanese.transcribeNumber(249.51).should.be.exactly('二百四十九・五一');
 			japanese.transcribeNumber(802.11).should.be.exactly('八百二・一一');
@@ -250,7 +250,7 @@ describe('japanese.transcribeNumber()', function () {
 				.should.be.exactly('〇・七二一四五四五四五四五四五四五四五四五四五四五四五四五');
 		});
 
-		it.skip('must have JavaScript oriented precisions for decimal fractions', function () {
+		it.skip('must have JavaScript oriented precisions for decimal fractions', () => {
 			japanese.transcribeNumber(1 / 3)
 				.should.be.exactly('〇・三三三三三三三三三三三三三三三三');
 			japanese.transcribeNumber(0.1 + 0.2)
@@ -297,7 +297,7 @@ describe('japanese.transcribeNumber()', function () {
 			].join(''));
 		});
 
-		it.skip('must transcribe each occurrence of number in string', function () {
+		it.skip('must transcribe each occurrence of number in string', () => {
 			japanese.transcribeNumber('2.26事件').should.be.exactly('二・二六事件');
 			japanese.transcribeNumber('2-4-11').should.be.exactly('二マイナス四マイナス十一');
 			japanese.transcribeNumber('50歩100歩').should.be.exactly('五十歩百歩');
@@ -306,19 +306,19 @@ describe('japanese.transcribeNumber()', function () {
 				.should.be.exactly('毎秒二億九千九百七十九万二千四百五十八メートル');
 		});
 
-		it.skip('must transcribe comma separated number strings', function () {
+		it.skip('must transcribe comma separated number strings', () => {
 			japanese.transcribeNumber('1,234,567.89')
 				.should.be.exactly('百二十三万四千五百六十七・八九');
 			japanese.transcribeNumber('1,2,34,5,6,7.89')
 				.should.be.exactly('百二十三万四千五百六十七・八九');
 		});
 
-		it.skip('mustn\'t include comma inside of fraction part as number', function () {
+		it.skip('mustn\'t include comma inside of fraction part as number', () => {
 			japanese.transcribeNumber('1,234,567.890,123,456')
 				.should.be.exactly('百二十三万四千五百六十七・八九〇,十二万三千四百五十六');
 		});
 
-		it.skip('must convert special numbers into string but not ones in the strings', function () {
+		it.skip('must convert special numbers into string but not ones in the strings', () => {
 			japanese.transcribeNumber(NaN).should.be.exactly('非数');
 			japanese.transcribeNumber(Infinity).should.be.exactly('無限大');
 			japanese.transcribeNumber(-Infinity).should.be.exactly('マイナス無限大');
