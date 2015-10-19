@@ -1,6 +1,6 @@
 'use strict';
 
-var extend = require('extend');
+const extend = require('extend');
 
 module.exports = function (japanese) {
 	japanese.romanizationTable = {
@@ -325,7 +325,7 @@ module.exports = function (japanese) {
 			throw new Error('You specified unknown config to japanese.romanize');
 		}
 
-		var table = extend({}, japanese.romanizationTable);
+		const table = extend({}, japanese.romanizationTable);
 
 		if (config['し'] === 'shi') {
 			extend(table, {
@@ -480,11 +480,11 @@ module.exports = function (japanese) {
 
 		string = japanese.hiraganize(string);
 
-		var dest = '';
-		var previousToken = '';
+		let dest = '';
+		let previousToken = '';
 
 		while (string.length > 0) {
-			var token = '';
+			let token = '';
 
 			// assuming we have only one or two letter token in table
 			if (table[string.slice(0, 2)]) {
@@ -501,7 +501,7 @@ module.exports = function (japanese) {
 				continue;
 			}
 
-			var tokenDest = table[token] || '';
+			let tokenDest = table[token] || '';
 
 			// small tsu
 			if (previousToken === 'っ') {

@@ -61,8 +61,8 @@ module.exports = function (japanese) {
 		'𛀁': 'エ',
 	};
 
-	var chr = String.fromCharCode;
-	var ord = function (char) {
+	const chr = String.fromCharCode;
+	const ord = function (char) {
 		return char.charCodeAt(0);
 	};
 

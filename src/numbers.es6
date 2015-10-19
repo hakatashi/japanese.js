@@ -1,21 +1,21 @@
 'use strict';
 
-var extend = require('extend');
-var Big = require('big.js');
+const extend = require('extend');
+const Big = require('big.js');
 
 // Get nth bit from buffer
 function getBit(buffer, position) {
-	var byteIndex = Math.floor(position / 8);
-	var byte = buffer[byteIndex] || 0;
+	let byteIndex = Math.floor(position / 8);
+	let byte = buffer[byteIndex] || 0;
 
 	return !!(byte & (1 << (7 - position % 8)));
 }
 
 // Get bits of buffer from a to b
 function getBits(buffer, from, length) {
-	var ret = new Big(0);
+	let ret = new Big(0);
 
-	for (var ptr = from; ptr < from + length; ptr++) {
+	for (let ptr = from; ptr < from + length; ptr++) {
 		ret = ret.times(2);
 		if (getBit(buffer, ptr)) {
 			ret = ret.plus(1);
@@ -406,13 +406,13 @@ module.exports = function (japanese) {
 				number = number.toString();
 			} else {
 				// Paste number into binary form
-				var buf = new Buffer(8);
+				const buf = new Buffer(8);
 				buf.writeDoubleBE(number, 0);
 
-				var sign = getBit(buf, 0);
-				var exponent = getBits(buf, 1, 11);
-				var mantissa = getBits(buf, 12, 52);
-				var fraction = null;
+				let sign = getBit(buf, 0);
+				let exponent = getBits(buf, 1, 11);
+				let mantissa = getBits(buf, 12, 52);
+				let fraction = null;
 
 				exponent = parseInt(exponent.toString());
 
@@ -433,12 +433,12 @@ module.exports = function (japanese) {
 			throw new ReferenceError('Type of `number` is unsupported');
 		}
 
-		var length = number.length;
+		let length = number.length;
 
 		// Main convertion starts here
 
-		var lit = '';
-		var restoreZero = false;
+		let lit = '';
+		let restoreZero = false;
 		if (config.unitNames.lit && length > config.unitNames.lit) {
 			lit = number.slice(0, -config.unitNames.lit).split('').map(function (digit) {
 				return config.digits[digit];
@@ -457,14 +457,14 @@ module.exports = function (japanese) {
 			return config.digits[0];
 		}
 
-		var transcription = '';
+		let transcription = '';
 
 		if (number.slice(-1) !== '0') {
 			transcription += config.digits[number.slice(-1)];
 		}
 
 		// Get sanitized unit name keys
-		var keysOfUnitNames = Object.keys(config.unitNames).map(function (key) {
+		let keysOfUnitNames = Object.keys(config.unitNames).map(function (key) {
 			// convert to int
 			return parseInt(key);
 		}).filter(function (key, index, self) {
@@ -479,9 +479,9 @@ module.exports = function (japanese) {
 		});
 
 		keysOfUnitNames.forEach(function (key, index) {
-			var nextKey = keysOfUnitNames[index + 1] || Infinity;
+			let nextKey = keysOfUnitNames[index + 1] || Infinity;
 			// slice the digits spaned by the unit name
-			var token = number.slice(Math.max(length - nextKey, 0), Math.max(length - key, 0));
+			let token = number.slice(Math.max(length - nextKey, 0), Math.max(length - key, 0));
 
 			if (token.length > 0) {
 				// check if every number in the token is zero
