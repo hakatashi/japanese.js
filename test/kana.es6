@@ -1,8 +1,8 @@
 /* global describe, it */
 'use strict';
 
-var should = require('should');
-var japanese = require('../');
+const should = require('should');
+const japanese = require('./japanese');
 
 describe('japanese.hiraganize()', () => {
 	it('must perfectly convert given katakana into hiragana', () => {

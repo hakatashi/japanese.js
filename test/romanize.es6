@@ -1,8 +1,8 @@
 /* global describe, it */
 'use strict';
 
-var should = require('should');
-var japanese = require('../');
+const should = require('should');
+const japanese = require('./japanese');
 
 describe('japanese.romanize()', () => {
 	it('should throw error when suspicious config was delivered', () => {

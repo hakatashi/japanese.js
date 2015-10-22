@@ -56,7 +56,7 @@ gulp.task 'test-node', ['build-node'], ->
 	gulp.src 'test/index.js', read: false
 	.pipe mocha reporter: 'spec'
 
-gulp.task 'test-browser', ['build-test'], ->
+gulp.task 'test-browser', ['build-browser', 'build-test'], ->
 	gulp.src 'test/index.html', read: false
 	.pipe mochaPhantom reporter: 'spec'
 

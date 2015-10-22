@@ -2,7 +2,7 @@
 'use strict';
 
 const should = require('should');
-const japanese = require('../');
+const japanese = require('./japanese');
 
 // Compatify Number.MAX_SAFE_INTEGER and Number.MIN_SAFE_INTEGER
 const MAX_SAFE_INTEGER = 9007199254740991;

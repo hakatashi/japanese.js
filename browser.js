@@ -3,7 +3,7 @@
 (function() {
   var global;
 
-  if (typeof module === 'undefined') {
+  if (process.browser) {
     global = window;
   }
 
