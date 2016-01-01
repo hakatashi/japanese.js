@@ -46,8 +46,8 @@ gulp.task 'build-test', ->
 	browserify
 		entries: 'test/index.js'
 		debug: true
-		transform: [babelify]
 		extensions: ['.es6', '.js']
+	.transform 'babelify', presets: ['es2015']
 	.bundle (error) -> console.error(error) if error
 	.pipe sourceStream 'browser.js'
 	.pipe gulp.dest 'test'
