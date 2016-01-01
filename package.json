@@ -56,7 +56,8 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
-    "test": "gulp"
+    "test": "gulp",
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha test/index.js"
   },
   "bin": {
     "japanese": "cli.js"
