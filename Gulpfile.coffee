@@ -28,7 +28,7 @@ gulp.task 'test-static', ->
 
 gulp.task 'build-node', ->
 	gulp.src ['src/*.es6', 'test/*.es6'], base: '.'
-	.pipe babel()
+	.pipe babel presets: ['es2015']
 	.pipe rename (file) -> file.extname = '.js'
 	.pipe gulp.dest '.'
 
