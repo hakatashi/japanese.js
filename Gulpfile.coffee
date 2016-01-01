@@ -28,7 +28,7 @@ gulp.task 'test-static', ->
 
 gulp.task 'build-node', ->
 	gulp.src ['src/*.es6', 'test/*.es6'], base: '.'
-	.pipe babel()
+	.pipe babel presets: ['es2015']
 	.pipe rename (file) -> file.extname = '.js'
 	.pipe gulp.dest '.'
 
@@ -36,8 +36,8 @@ gulp.task 'build-browser', ->
 	browserify
 		entries: 'browser.js'
 		debug: true
-		transform: [babelify]
 		extensions: ['.es6', '.js']
+	.transform 'babelify', presets: ['es2015']
 	.bundle (error) -> console.error(error) if error
 	.pipe sourceStream 'japanese.js'
 	.pipe gulp.dest 'build'
@@ -46,8 +46,8 @@ gulp.task 'build-test', ->
 	browserify
 		entries: 'test/index.js'
 		debug: true
-		transform: [babelify]
 		extensions: ['.es6', '.js']
+	.transform 'babelify', presets: ['es2015']
 	.bundle (error) -> console.error(error) if error
 	.pipe sourceStream 'browser.js'
 	.pipe gulp.dest 'test'
