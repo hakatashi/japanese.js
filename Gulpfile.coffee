@@ -36,8 +36,8 @@ gulp.task 'build-browser', ->
 	browserify
 		entries: 'browser.js'
 		debug: true
-		transform: [babelify]
 		extensions: ['.es6', '.js']
+	.transform 'babelify', presets: ['es2015']
 	.bundle (error) -> console.error(error) if error
 	.pipe sourceStream 'japanese.js'
 	.pipe gulp.dest 'build'
