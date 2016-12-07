@@ -51,7 +51,7 @@ $ japanese
 
 ### japanese.hiraganize(text)
 
-Covert input katakana into hiragara.
+Convert input katakana into hiragana.
 
 #### Arguments
 
@@ -68,7 +68,7 @@ japanese.hiraganize('板垣死ス𪜈');           // 板垣死すとも
 
 ### japanese.katakanize(text)
 
-Covert input hiragana into katakana.
+Convert input hiragana into katakana.
 
 #### Arguments
 
@@ -87,14 +87,14 @@ japanese.katakanize('本日ゟかき氷解禁'); // 本日ヨリカキ氷解禁
 
 Convert input text into romaji.
 
-**important**: Most of definitions of Japanese text romanizations requires total recognition of
+**important**: Most definitions of Japanese text romanizations require total recognition of
 Japanese text, but [robots cannot actually think or understand](http://www.cleverbot.com/)!
-Herewith some conversions are hopelessly poor, for example, ISO 3602 defines that "こうし" which
+Some conversions are hopelessly poor. For example, ISO 3602 defines that "こうし" which
 means "講師" must be romanized as "kôsi", while "こうし" which means "子牛" must be romanized
 as "kousi" (because 子牛 is mixed word of 子 and 牛), though these are apparently the same
-in Kana formed text. Yet japanese.js is very... very very hardly tested, this module (and
-any other romanization machines) cannot distinguish these semantics. So unfortunately, you
-cannot use this function as official writing or something. Ugh.
+in Kana-form. While japanese.js is very... very very thoroughly tested, this module (and any
+other romanization machines) cannot distinguish between these semantics. So unfortunately,
+you cannot use this function for official writing or something. Ugh.
 
 #### Arguments
 
@@ -116,9 +116,9 @@ japanese.romanize('いいづか とおる', {
 
 #### Configs
 
-Config is represented as plain object, which object keys stand for a collection of
+Config is represented as plain object, where object keys stand for a collection of
 similar characters, and the value determines how these characters are converted.
-So the object is not just the same with conversion table.
+So the object is not just the same as a conversion table.
 
 Available parameters are following.
 
@@ -145,7 +145,7 @@ Available parameters are following.
 | ゐ   | i, wi               |
 | を   | o, wo               |
 
-You can also specify these predefined configs by supplying string. Default is **wikipedia**.
+You can also specify these predefined configs by supplying a string. Default is **wikipedia**.
 
 |      | 'wikipedia' | 'traditional hepburn' | 'modified hepburn' | 'kunrei' | 'nihon' |
 |------|-------------|-----------------------|--------------------|----------|---------|
@@ -178,13 +178,13 @@ Source: http://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style/Japan-related_art
 
 The most modern and widely used form of romanization. Wikipedia uses this guideline to name
 their article title and text. This is mixed version of traditional and modified Hepburn
-and easyly recognized for everyone.
+and easily recognizable for everyone.
 
 ##### Traditional and Modified Hepburn
 
 Source: http://en.wikipedia.org/wiki/Hepburn_romanization
 
-Actually this is not the specification. Hepburn romanization is very widely known but nobody
+Actually this is not a specification. Hepburn romanization is very widely known but nobody
 other than Hepburn knows the REAL definition of these method.
 
 ##### Kunrei-shiki and Nihon-shiki
@@ -192,7 +192,7 @@ other than Hepburn knows the REAL definition of these method.
 Source: http://www.iso.org/iso/catalogue_detail.htm?csnumber=9029
 
 Kunrei-shiki is defined as ISO 9029 and Nihon-shiki as ISO 9209 Strict. These romanizations
-are today a kind of obsolete but still only standardized romanization in the world.
+are today kind of obsolete but still the only standardized romanization in the world.
 
 
 ## Roadmap
