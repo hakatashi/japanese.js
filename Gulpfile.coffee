@@ -52,15 +52,15 @@ gulp.task 'build-test', ->
 	.pipe sourceStream 'browser.js'
 	.pipe gulp.dest 'test'
 
-gulp.task 'test-node', ['build-node'], ->
+gulp.task 'test-node', gulp.series 'build-node', ->
 	gulp.src 'test/index.js', read: false
 	.pipe mocha reporter: 'spec'
 
-gulp.task 'test-browser', ['build-browser', 'build-test'], ->
+gulp.task 'test-browser', gulp.series 'build-browser', 'build-test', ->
 	gulp.src 'test/index.html', read: false
 	.pipe mochaPhantom reporter: 'spec'
 
-gulp.task 'dist', ['build-node', 'build-browser'], ->
+gulp.task 'dist', gulp.series 'build-node', 'build-browser', ->
 	gulp.src 'build/japanese.js'
 	.pipe header banner, pkg: require './package.json'
 	.pipe gulp.dest 'dist'
@@ -68,6 +68,6 @@ gulp.task 'dist', ['build-node', 'build-browser'], ->
 	.pipe rename (file) -> file.extname = '.min.js'
 	.pipe gulp.dest 'dist'
 
-gulp.task 'test', ['test-static', 'test-browser', 'test-node']
+gulp.task 'test', gulp.parallel 'test-static', 'test-browser', 'test-node'
 
-gulp.task 'default', ['test']
+gulp.task 'default', gulp.task 'test'

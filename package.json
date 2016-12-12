@@ -40,7 +40,7 @@
     "browserify": "^13.0.0",
     "coffee-script": "^1.11.0",
     "coveralls": "^2.11.14",
-    "gulp": "^3.9.0",
+    "gulp": "github:gulpjs/gulp#4.0",
     "gulp-babel": "^6.1.1",
     "gulp-header": "^1.8.7",
     "gulp-jshint": "^2.0.0",
