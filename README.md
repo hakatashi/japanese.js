@@ -1,6 +1,4 @@
-# japanese.js [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency Status][gemnasium-image]][gemnasium-url]
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/hakatashi/japanese.js.svg)](https://greenkeeper.io/)
+# japanese.js [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency Status][gemnasium-image]][gemnasium-url] [![Greenkeeper badge](https://badges.greenkeeper.io/hakatashi/japanese.js.svg)](https://greenkeeper.io/)
 
 > Util collection for Japanese text processing. Hiraganize, Katakanize, and Romanize.
 
