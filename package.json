@@ -52,7 +52,7 @@
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.0.1",
     "mocha": "^3.0.2",
-    "should": "^11.1.1",
+    "should": "11.2.0",
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
