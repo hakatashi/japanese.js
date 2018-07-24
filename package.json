@@ -47,7 +47,7 @@
     "gulp-mocha-phantomjs": "^0.12.0",
     "gulp-rename": "^1.2.2",
     "gulp-spawn-mocha": "^3.0.0",
-    "gulp-uglify": "^3.0.0",
+    "gulp-uglify": "^3.0.1",
     "istanbul": "^0.4.1",
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.0.1",
